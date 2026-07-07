@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+video_pipeline/output/
+video_pipeline/.cache/
