@@ -97,6 +97,7 @@ def mux_video_audio(video_path: Path, audio_path: Path, out_path: Path) -> Path:
             "ffmpeg", "-y",
             "-i", str(video_path), "-i", str(audio_path),
             "-c:v", "copy", "-c:a", "aac", "-shortest",
+            "-movflags", "+faststart",
             str(out_path),
         ],
         check=True,
