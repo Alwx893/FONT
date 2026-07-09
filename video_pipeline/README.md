@@ -16,9 +16,11 @@ voiceover -> AI scene images -> music -> final render.
    each with a narration slice and an image-generation prompt.
 4. **Voiceover** (`voiceover.py`) — synthesizes the narration with ElevenLabs
    TTS (`ELEVENLABS_API_KEY`).
-5. **Scene images** (`image_gen.py`) — generates one image per scene with
+5. **Scene images** (`image_gen.py`) — generates one image per scene. Tries
+   OpenAI (`gpt-image-1`, `OPENAI_API_KEY`) first if set, then falls back to
    Google's "Nano Banana" model (`gemini-2.5-flash-image`, same
-   `GEMINI_API_KEY`).
+   `GEMINI_API_KEY` as the script stage — note its free tier has a 0 quota
+   for image generation; billing must be enabled), then a placeholder frame.
 6. **Music** (`music.py`) — generates a background track with ElevenLabs
    Music (same `ELEVENLABS_API_KEY`).
 7. **Render** (`compose.py`) — turns each scene image into a Ken Burns
@@ -43,7 +45,8 @@ Requires `ffmpeg` on PATH.
 
 Keys needed for real (non-fallback) output:
 - `ELEVENLABS_API_KEY` — voiceover + music
-- `GEMINI_API_KEY` — script/storyboard text + Nano Banana scene images
+- `GEMINI_API_KEY` — script/storyboard text (and Nano Banana scene images, if billing is enabled)
+- `OPENAI_API_KEY` — optional, scene images via `gpt-image-1` (tried before Gemini images)
 - `YOUTUBE_API_KEY` — optional, not currently used (yt-dlp needs no key)
 
 `.env` is gitignored — never commit real keys. If a key was ever pasted into
@@ -62,11 +65,15 @@ per-scene PNGs, `voiceover.*`, `music.*`, and `final.mp4`.
 
 ## Known environment limitation (sandboxed sessions)
 
-Some sandboxed execution environments (including the one this pipeline was
-built and smoke-tested in) enforce an egress allowlist that blocks
-`www.youtube.com` and `api.elevenlabs.io`. In that case stage 1 and stages
-4/6 automatically fall back (see above) — the mechanics are verified, but
-the actual voice/music/competitor-data content is not real. Run this outside
-such a sandbox (a normal machine/CI runner) with real keys to get real
-output. `generativelanguage.googleapis.com` (Gemini/Nano Banana) was
-reachable in that same sandbox, for reference.
+Some sandboxed execution environments enforce an egress allowlist. On
+Claude Code on the web, the environment's **Network access** setting
+(Trusted/Custom/Full) controls this — see
+[docs](https://code.claude.com/docs/en/claude-code-on-the-web#network-access).
+The default **Trusted** level allows `*.googleapis.com` (so Gemini works
+out of the box) but blocks `www.youtube.com`, `api.elevenlabs.io`, and
+`api.openai.com`. To unblock them, edit the environment (cloud icon →
+settings) and switch to **Custom** with those domains added — changes apply
+to new sessions only, not the one you're editing from. Stage 1
+(competitor analysis via `www.youtube.com`) still needs that domain added
+separately if you want live results instead of the "no competitor data"
+fallback.

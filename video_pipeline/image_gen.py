@@ -1,17 +1,21 @@
-"""Scene image generation via Google's "Nano Banana" (gemini-2.5-flash-image).
+"""Scene image generation.
 
-Falls back to a locally-rendered placeholder frame (solid gradient + the
-prompt text) when GEMINI_API_KEY is missing or the call fails, so the compose
-stage can still be exercised end to end without a live key.
+Tries OpenAI (gpt-image-1) first if OPENAI_API_KEY is set, then Google's
+"Nano Banana" (gemini-2.5-flash-image) if GEMINI_API_KEY is set, then falls
+back to a locally-rendered placeholder frame (solid background + the prompt
+text) so the compose stage can always be exercised end to end.
 """
 from __future__ import annotations
 
+import base64
 import textwrap
 from pathlib import Path
 
 from config import load_settings
 
 IMAGE_MODEL = "gemini-2.5-flash-image"
+OPENAI_IMAGE_MODEL = "gpt-image-1"
+OPENAI_SIZES = {"landscape": "1536x1024", "vertical": "1024x1536"}
 
 
 def _placeholder_image(prompt: str, out_path: Path, size: tuple[int, int]) -> Path:
@@ -29,6 +33,38 @@ def _placeholder_image(prompt: str, out_path: Path, size: tuple[int, int]) -> Pa
     return out_path
 
 
+def _generate_openai(prompt: str, out_path: Path, orientation: str, api_key: str) -> Path:
+    from openai import OpenAI
+
+    client = OpenAI(api_key=api_key)
+    resp = client.images.generate(
+        model=OPENAI_IMAGE_MODEL,
+        prompt=f"{prompt}. No text, no watermarks, no logos in the image.",
+        size=OPENAI_SIZES[orientation],
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_bytes(base64.b64decode(resp.data[0].b64_json))
+    return out_path
+
+
+def _generate_gemini(prompt: str, out_path: Path, api_key: str) -> Path:
+    from google import genai
+    from google.genai import types
+
+    client = genai.Client(api_key=api_key)
+    resp = client.models.generate_content(
+        model=IMAGE_MODEL,
+        contents=[f"{prompt}. No text, no watermarks, no logos in the image."],
+        config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
+    )
+    for part in resp.candidates[0].content.parts:
+        if part.inline_data:
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            out_path.write_bytes(part.inline_data.data)
+            return out_path
+    raise RuntimeError("no inline image data in Gemini response")
+
+
 def generate_scene_image(
     prompt: str,
     out_path: Path,
@@ -36,28 +72,20 @@ def generate_scene_image(
 ) -> Path:
     size = (1920, 1080) if orientation == "landscape" else (1080, 1920)
     settings = load_settings()
-    if not settings.has_gemini:
-        return _placeholder_image(prompt, out_path, size)
 
-    from google import genai
-    from google.genai import types
+    if settings.has_openai:
+        try:
+            return _generate_openai(prompt, out_path, orientation, settings.openai_api_key)
+        except Exception as exc:
+            print(f"[image_gen] OpenAI image generation failed ({exc}); trying next provider.")
 
-    client = genai.Client(api_key=settings.gemini_api_key)
-    try:
-        resp = client.models.generate_content(
-            model=IMAGE_MODEL,
-            contents=[f"{prompt}. No text, no watermarks, no logos in the image."],
-            config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
-        )
-        for part in resp.candidates[0].content.parts:
-            if part.inline_data:
-                out_path.parent.mkdir(parents=True, exist_ok=True)
-                out_path.write_bytes(part.inline_data.data)
-                return out_path
-        raise RuntimeError("no inline image data in Gemini response")
-    except Exception as exc:
-        print(f"[image_gen] Nano Banana generation failed ({exc}); using placeholder frame.")
-        return _placeholder_image(prompt, out_path, size)
+    if settings.has_gemini:
+        try:
+            return _generate_gemini(prompt, out_path, settings.gemini_api_key)
+        except Exception as exc:
+            print(f"[image_gen] Nano Banana generation failed ({exc}); using placeholder frame.")
+
+    return _placeholder_image(prompt, out_path, size)
 
 
 if __name__ == "__main__":

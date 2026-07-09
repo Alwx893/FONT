@@ -18,6 +18,7 @@ class Settings:
     elevenlabs_api_key: str | None
     gemini_api_key: str | None
     youtube_api_key: str | None
+    openai_api_key: str | None
 
     @property
     def has_elevenlabs(self) -> bool:
@@ -31,10 +32,15 @@ class Settings:
     def has_youtube_api(self) -> bool:
         return bool(self.youtube_api_key)
 
+    @property
+    def has_openai(self) -> bool:
+        return bool(self.openai_api_key)
+
 
 def load_settings() -> Settings:
     return Settings(
         elevenlabs_api_key=os.getenv("ELEVENLABS_API_KEY") or None,
         gemini_api_key=os.getenv("GEMINI_API_KEY") or None,
         youtube_api_key=os.getenv("YOUTUBE_API_KEY") or None,
+        openai_api_key=os.getenv("OPENAI_API_KEY") or None,
     )
