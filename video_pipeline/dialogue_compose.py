@@ -1,6 +1,6 @@
 """Assembles a two-speaker dialogue video: looped character footage per turn,
-burned-in captions (Steelfish font, Cyrillic-safe), topical emoji icons,
-voiceover per turn, and background music underneath."""
+burned-in word-by-word captions (Courier New), voiceover per turn, and
+background music underneath."""
 from __future__ import annotations
 
 import subprocess
@@ -11,14 +11,12 @@ from compose import get_duration, mix_audio, mux_video_audio, concat_clips
 
 ASSETS = Path(__file__).resolve().parent / "assets"
 FOOTAGE = ASSETS / "footage"
-# Real "Courier New" isn't available on Linux (proprietary MS font). Liberation
-# Mono is the metric-compatible open-source substitute (same letter widths).
-CAPTION_FONT = Path("/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf")
-EMOJI_FONT = Path("/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf")
+CAPTION_FONT = ASSETS / "fonts" / "CourierNew.ttf"
 
 CANVAS = (1080, 1920)
 FPS = 30
 CAPTION_FONTSIZE = 88  # "size 10" doesn't map to a literal px value; tell me to resize
+CAPTION_Y = 480  # above the characters' heads
 CAPTION_MIN_WORD_SECONDS = 0.14
 
 FOOTAGE_BY_SPEAKER = {
@@ -26,42 +24,6 @@ FOOTAGE_BY_SPEAKER = {
     "briefcase": FOOTAGE / "briefcase_solo.mp4",
 }
 ESTABLISHING_SHOT = FOOTAGE / "both_establishing.mp4"
-
-# Topical keyword -> emoji, checked in order; first match wins per turn.
-EMOJI_KEYWORDS: list[tuple[str, str]] = [
-    ("картин", "🎨"), ("музе", "🏛️"),
-    ("паспорт", "🛂"), ("виз", "🛂"), ("иммунитет", "🛂"),
-    ("самолет", "✈️"), ("самолёт", "✈️"), ("джет", "✈️"), ("таможн", "🛃"),
-    ("час", "⌚"), ("ролекс", "⌚"), ("rolex", "⌚"),
-    ("банк", "🏦"), ("кредит", "💳"),
-    ("дубай", "🏙️"), ("виза", "🛂"),
-    ("налог", "💰"), ("миллион", "💵"), ("доллар", "💵"), ("$", "💵"),
-    ("компани", "🏢"), ("llc", "🏢"),
-]
-
-
-def pick_emoji(text: str) -> str | None:
-    lowered = text.lower()
-    for keyword, emoji in EMOJI_KEYWORDS:
-        if keyword in lowered:
-            return emoji
-    return None
-
-
-EMOJI_NATIVE_SIZE = 109  # NotoColorEmoji is a fixed-size bitmap-strike font
-
-
-def _render_emoji_png(emoji: str, out_path: Path, size: int = 220) -> Path:
-    from PIL import Image, ImageDraw, ImageFont
-
-    native = Image.new("RGBA", (EMOJI_NATIVE_SIZE, EMOJI_NATIVE_SIZE), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(native)
-    font = ImageFont.truetype(str(EMOJI_FONT), EMOJI_NATIVE_SIZE)
-    draw.text((0, 0), emoji, font=font, embedded_color=True)
-    img = native.resize((size, size), Image.LANCZOS)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    img.save(out_path)
-    return out_path
 
 
 def _escape_ffmpeg_path(path: Path) -> str:
@@ -106,7 +68,7 @@ def _build_caption_filter(turn_audio: TurnAudio, workdir: Path) -> str:
             f"textfile='{_escape_ffmpeg_path(word_file)}':"
             f"fontcolor=white:fontsize={CAPTION_FONTSIZE}:"
             "box=0:borderw=3:bordercolor=black@0.85:"
-            "x=(w-text_w)/2:y=h-620:"
+            f"x=(w-text_w)/2:y={CAPTION_Y}:"
             f"enable='between(t,{start:.3f},{end:.3f})'"
         )
     return ",".join(parts)
@@ -128,31 +90,12 @@ def render_turn_clip(
     ]
     caption_filter = _build_caption_filter(turn_audio, workdir)
 
-    emoji = pick_emoji(turn.text)
-    inputs = ["-stream_loop", "-1", "-i", str(footage)]
-    if emoji:
-        emoji_png = workdir / f"emoji_{turn.index:03d}.png"
-        _render_emoji_png(emoji, emoji_png)
-        inputs += ["-i", str(emoji_png)]
-        vf_main = ",".join(base_filters + [caption_filter])
-        filter_complex = (
-            f"[0:v]{vf_main}[base];"
-            f"[1:v]scale=160:160[icon];"
-            f"[base][icon]overlay=W-200:120"
-        )
-        cmd = [
-            "ffmpeg", "-y", *inputs,
-            "-filter_complex", filter_complex,
-            "-t", str(duration), "-r", str(FPS), "-an",
-            str(out_path),
-        ]
-    else:
-        cmd = [
-            "ffmpeg", "-y", *inputs,
-            "-vf", ",".join(base_filters + [caption_filter]),
-            "-t", str(duration), "-r", str(FPS), "-an",
-            str(out_path),
-        ]
+    cmd = [
+        "ffmpeg", "-y", "-stream_loop", "-1", "-i", str(footage),
+        "-vf", ",".join(base_filters + [caption_filter]),
+        "-t", str(duration), "-r", str(FPS), "-an",
+        str(out_path),
+    ]
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(cmd, check=True, capture_output=True)
