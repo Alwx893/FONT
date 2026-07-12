@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 video_pipeline/output/
 video_pipeline/.cache/
+video_pipeline/assets/footage/
+video_pipeline/assets/music/
+video_pipeline/assets/*_script.txt
