@@ -400,10 +400,41 @@ def build_report(viral: list[dict], rising: list[dict], now: datetime) -> str:
 # --------------------------------------------------------------------------
 
 
+CHAT_ID_FILE = DATA_DIR / "telegram_chat_id.txt"
+
+
+def discover_chat_id(token: str) -> str | None:
+    """Find the chat id from the bot's recent updates (user must have
+    messaged the bot at least once in the last 24h)."""
+    try:
+        data = _http_json(f"https://api.telegram.org/bot{token}/getUpdates")
+        for update in reversed(data.get("result", [])):
+            chat = (update.get("message") or {}).get("chat") or {}
+            if chat.get("id"):
+                return str(chat["id"])
+    except Exception as exc:  # noqa: BLE001
+        print(f"getUpdates failed: {exc}", file=sys.stderr)
+    return None
+
+
 def send_telegram(viral: list[dict], now: datetime) -> None:
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not token:
+        return
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
-    if not token or not chat_id:
+    if not chat_id and CHAT_ID_FILE.exists():
+        chat_id = CHAT_ID_FILE.read_text().strip()
+    if not chat_id:
+        chat_id = discover_chat_id(token)
+        if chat_id:
+            CHAT_ID_FILE.write_text(chat_id)
+            print(f"Discovered Telegram chat id {chat_id}")
+    if not chat_id:
+        print(
+            "Telegram: chat id unknown — send any message to your bot "
+            "and the next run will pick it up.",
+            file=sys.stderr,
+        )
         return
     top = viral[:5]
     lines = [f"🎬 Reels-отчёт {now.strftime('%d.%m.%Y')}"]

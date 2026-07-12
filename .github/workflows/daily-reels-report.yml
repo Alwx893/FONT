@@ -2,8 +2,9 @@ name: Daily Reels Report
 
 on:
   schedule:
-    # 04:30 UTC = 07:30 по Москве. Время в cron указывается в UTC.
-    - cron: "30 4 * * *"
+    # 04:10 UTC = 07:10 по Москве (cron в UTC). Запуск чуть раньше 07:30:
+    # GitHub нередко задерживает cron-запуски на 10-20 минут.
+    - cron: "10 4 * * *"
   workflow_dispatch: {}
 
 permissions:
