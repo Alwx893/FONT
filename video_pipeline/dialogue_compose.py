@@ -3,9 +3,7 @@ burned-in captions (Steelfish font, Cyrillic-safe), topical emoji icons,
 voiceover per turn, and background music underneath."""
 from __future__ import annotations
 
-import re
 import subprocess
-import textwrap
 from pathlib import Path
 
 from dialogue_voiceover import TurnAudio
@@ -13,11 +11,15 @@ from compose import get_duration, mix_audio, mux_video_audio, concat_clips
 
 ASSETS = Path(__file__).resolve().parent / "assets"
 FOOTAGE = ASSETS / "footage"
-FONT_PATH = Path(__file__).resolve().parent.parent / "steelfish.bold.ttf"
+# Real "Courier New" isn't available on Linux (proprietary MS font). Liberation
+# Mono is the metric-compatible open-source substitute (same letter widths).
+CAPTION_FONT = Path("/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf")
 EMOJI_FONT = Path("/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf")
 
 CANVAS = (1080, 1920)
 FPS = 30
+CAPTION_FONTSIZE = 88  # "size 10" doesn't map to a literal px value; tell me to resize
+CAPTION_MIN_WORD_SECONDS = 0.14
 
 FOOTAGE_BY_SPEAKER = {
     "hoodie": FOOTAGE / "hoodie_solo.mp4",
@@ -66,6 +68,50 @@ def _escape_ffmpeg_path(path: Path) -> str:
     return str(path).replace("\\", "/").replace(":", "\\:")
 
 
+def _word_timings(text: str, duration: float) -> list[tuple[str, float, float]]:
+    """Evenly-paced (by character count) word-by-word timing within `duration`.
+
+    Approximate: we don't have per-word timestamps from ElevenLabs, so this
+    distributes time proportionally to word length with a floor per word.
+    """
+    words = text.split()
+    if not words:
+        return []
+    weights = [max(len(w), 1) for w in words]
+    total_weight = sum(weights)
+    raw = [duration * w / total_weight for w in weights]
+    raw = [max(s, CAPTION_MIN_WORD_SECONDS) for s in raw]
+    scale = duration / sum(raw)
+    timings = []
+    t = 0.0
+    for word, seg in zip(words, raw):
+        seg *= scale
+        timings.append((word, t, t + seg))
+        t += seg
+    return timings
+
+
+def _build_caption_filter(turn_audio: TurnAudio, workdir: Path) -> str:
+    turn = turn_audio.turn
+    words_dir = workdir / "words"
+    words_dir.mkdir(parents=True, exist_ok=True)
+    timings = _word_timings(turn.text, max(turn_audio.duration, 0.3))
+
+    parts = []
+    for i, (word, start, end) in enumerate(timings):
+        word_file = words_dir / f"w_{turn.index:03d}_{i:03d}.txt"
+        word_file.write_text(word, encoding="utf-8")
+        parts.append(
+            f"drawtext=fontfile='{_escape_ffmpeg_path(CAPTION_FONT)}':"
+            f"textfile='{_escape_ffmpeg_path(word_file)}':"
+            f"fontcolor=white:fontsize={CAPTION_FONTSIZE}:"
+            "box=0:borderw=3:bordercolor=black@0.85:"
+            "x=(w-text_w)/2:y=h-620:"
+            f"enable='between(t,{start:.3f},{end:.3f})'"
+        )
+    return ",".join(parts)
+
+
 def render_turn_clip(
     turn_audio: TurnAudio,
     out_path: Path,
@@ -76,21 +122,11 @@ def render_turn_clip(
     footage = ESTABLISHING_SHOT if is_first_turn else FOOTAGE_BY_SPEAKER[turn.speaker]
     duration = max(turn_audio.duration, 0.3)
 
-    wrapped = textwrap.fill(turn.text, width=22)
-    caption_file = workdir / f"caption_{turn.index:03d}.txt"
-    caption_file.write_text(wrapped, encoding="utf-8")
-
-    filters = [
+    base_filters = [
         f"scale={CANVAS[0]}:{CANVAS[1]}:force_original_aspect_ratio=increase",
         f"crop={CANVAS[0]}:{CANVAS[1]}",
-        (
-            f"drawtext=fontfile='{_escape_ffmpeg_path(FONT_PATH)}':"
-            f"textfile='{_escape_ffmpeg_path(caption_file)}':"
-            "fontcolor=white:fontsize=64:line_spacing=14:"
-            "box=1:boxcolor=black@0.55:boxborderw=24:"
-            "x=(w-text_w)/2:y=h-560"
-        ),
     ]
+    caption_filter = _build_caption_filter(turn_audio, workdir)
 
     emoji = pick_emoji(turn.text)
     inputs = ["-stream_loop", "-1", "-i", str(footage)]
@@ -98,7 +134,7 @@ def render_turn_clip(
         emoji_png = workdir / f"emoji_{turn.index:03d}.png"
         _render_emoji_png(emoji, emoji_png)
         inputs += ["-i", str(emoji_png)]
-        vf_main = ",".join(filters)
+        vf_main = ",".join(base_filters + [caption_filter])
         filter_complex = (
             f"[0:v]{vf_main}[base];"
             f"[1:v]scale=160:160[icon];"
@@ -113,7 +149,7 @@ def render_turn_clip(
     else:
         cmd = [
             "ffmpeg", "-y", *inputs,
-            "-vf", ",".join(filters),
+            "-vf", ",".join(base_filters + [caption_filter]),
             "-t", str(duration), "-r", str(FPS), "-an",
             str(out_path),
         ]

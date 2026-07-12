@@ -58,7 +58,7 @@ def generate_voiceover(
         audio = client.text_to_speech.convert(
             voice_id=voice_id,
             text=text,
-            model_id="eleven_multilingual_v2",
+            model_id="eleven_v3",
             output_format="mp3_44100_128",
         )
         out_path.parent.mkdir(parents=True, exist_ok=True)
