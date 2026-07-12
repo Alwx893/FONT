@@ -84,37 +84,44 @@ HISTORY_FILE = DATA_DIR / "reels_history.json"
 # --------------------------------------------------------------------------
 
 
-def _http_json(url: str, payload: dict | None = None, timeout: int = 60):
+def _http_json(url: str, payload: dict | None = None, timeout: int = 60,
+               token: str | None = None):
     data = None
     headers = {"Accept": "application/json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
     if payload is not None:
         data = json.dumps(payload).encode()
         headers["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=data, headers=headers)
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode())
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except urllib.error.HTTPError as err:
+        body = ""
+        try:
+            body = err.read().decode()[:600]
+        except Exception:  # noqa: BLE001
+            pass
+        raise RuntimeError(
+            f"HTTP {err.code} for {url.split('?')[0]}: {body}"
+        ) from None
 
 
 def fetch_posts(token: str, hashtags: list[str]) -> list[dict]:
     """Run the Apify hashtag scraper and return raw post items."""
     run_input = {"hashtags": hashtags, "resultsLimit": RESULTS_PER_HASHTAG}
-    start_url = (
-        f"{APIFY_BASE}/acts/{APIFY_ACTOR}/runs?"
-        + urllib.parse.urlencode({"token": token})
-    )
-    run = _http_json(start_url, run_input)["data"]
+    start_url = f"{APIFY_BASE}/acts/{APIFY_ACTOR}/runs"
+    run = _http_json(start_url, run_input, token=token)["data"]
     run_id, dataset_id = run["id"], run["defaultDatasetId"]
     print(f"Apify run {run_id} started for {len(hashtags)} hashtags…")
 
-    status_url = (
-        f"{APIFY_BASE}/actor-runs/{run_id}?"
-        + urllib.parse.urlencode({"token": token})
-    )
+    status_url = f"{APIFY_BASE}/actor-runs/{run_id}"
     waited = 0
     while True:
         time.sleep(APIFY_POLL_SECONDS)
         waited += APIFY_POLL_SECONDS
-        status = _http_json(status_url)["data"]["status"]
+        status = _http_json(status_url, token=token)["data"]["status"]
         if status == "SUCCEEDED":
             break
         if status in ("FAILED", "ABORTED", "TIMED-OUT"):
@@ -124,9 +131,9 @@ def fetch_posts(token: str, hashtags: list[str]) -> list[dict]:
 
     items_url = (
         f"{APIFY_BASE}/datasets/{dataset_id}/items?"
-        + urllib.parse.urlencode({"token": token, "clean": "true", "format": "json"})
+        + urllib.parse.urlencode({"clean": "true", "format": "json"})
     )
-    items = _http_json(items_url, timeout=120)
+    items = _http_json(items_url, timeout=120, token=token)
     print(f"Apify returned {len(items)} items")
 
     # The actor may return posts directly, or hashtag objects that embed
