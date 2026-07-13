@@ -21,6 +21,7 @@ Zero third-party dependencies — Python 3.10+ stdlib only.
 
 from __future__ import annotations
 
+import html
 import json
 import os
 import re
@@ -848,7 +849,70 @@ def discover_chat_id(token: str) -> str | None:
     return None
 
 
-def send_telegram(viral: list[dict], now: datetime) -> None:
+def _tg_entry(index: int, reel: dict, headline: str) -> str:
+    """One reel as a compact HTML block for Telegram."""
+    caption = html.escape(snippet(reel["caption"], 60) or reel["shortcode"])
+    link = f'<a href="{html.escape(reel["url"], quote=True)}">{caption}</a>'
+    author = html.escape(reel["author"])
+    return (
+        f"{index}. {headline} · {fmt_views(reel['views'])} 👁 "
+        f"· <b>{fmt_multiplier(reel)}</b>\n"
+        f"{CATEGORY_LABELS[reel['category']]} · @{author} "
+        f"({fmt_followers(reel)} подписчиков)\n{link}"
+    )
+
+
+def build_telegram_messages(viral: list[dict], rising: list[dict],
+                            fresh: list[dict], now: datetime) -> list[str]:
+    """The full report as Telegram-sized HTML messages (no tables)."""
+    blocks = [
+        f"🎬 <b>Reels-отчёт {now.strftime('%d.%m.%Y')}</b>\n"
+        f"Книги · успех · бизнес. Авторы до {fmt_views(MAX_FOLLOWERS)} "
+        f"подписчиков, ролики моложе {MAX_AGE_DAYS} дн.\n"
+        f"«×N» — во сколько раз просмотры больше аудитории.",
+        f"🏆 <b>Пробили 1 млн — {len(viral)}</b> (быстрые сверху)",
+    ]
+    if viral:
+        for i, r in enumerate(viral, 1):
+            mark = "✅" if r["measured"] else "≈"
+            blocks.append(
+                _tg_entry(i, r, f"<b>{fmt_hours(r['ttm'])} до 1 млн</b> {mark}")
+            )
+    else:
+        blocks.append("Сегодня таких нет.")
+
+    blocks.append(f"🚀 <b>На подлёте к миллиону — {len(rising)}</b>")
+    if rising:
+        for i, r in enumerate(rising, 1):
+            eta = (VIRAL_VIEWS - r["views"]) / max(r["vph"], 1)
+            blocks.append(
+                _tg_entry(i, r, f"прогноз ~{fmt_hours(r['age_hours'] + eta)}")
+            )
+    else:
+        blocks.append("Кандидатов нет.")
+
+    blocks.append(f"🌱 <b>Новые в трекинге — {len(fresh)}</b>")
+    if fresh:
+        for i, r in enumerate(fresh[:10], 1):
+            blocks.append(_tg_entry(i, r, f"{fmt_views(r['vph'])}/час"))
+    else:
+        blocks.append("Пока пусто.")
+
+    messages, current = [], ""
+    for block in blocks:
+        candidate = f"{current}\n\n{block}" if current else block
+        if len(candidate) > 3800 and current:
+            messages.append(current)
+            current = block
+        else:
+            current = candidate
+    if current:
+        messages.append(current)
+    return messages
+
+
+def send_telegram(viral: list[dict], rising: list[dict],
+                  fresh: list[dict], now: datetime) -> None:
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     if not token:
         return
@@ -873,33 +937,34 @@ def send_telegram(viral: list[dict], now: datetime) -> None:
             file=sys.stderr,
         )
         return
-    top = viral[:5]
-    lines = [f"🎬 Reels-отчёт {now.strftime('%d.%m.%Y')}"]
-    if top:
-        lines.append("Быстрее всех до 1 млн (авторы < "
-                     f"{fmt_views(MAX_FOLLOWERS)} подписчиков):")
-        for i, r in enumerate(top, 1):
-            mark = "" if r["measured"] else " (≈)"
-            lines.append(
-                f"{i}. {fmt_hours(r['ttm'])}{mark} · {fmt_views(r['views'])} "
-                f"({fmt_multiplier(r)} к аудитории) · @{r['author']}\n{r['url']}"
-            )
-    else:
-        lines.append("Свежих роликов с 1 млн+ сегодня нет.")
-    lines.append("Полный отчёт — в папке reports репозитория.")
-    tg_debug = DEBUG.setdefault("telegram", {})
     tg_debug["chat_id"] = chat_id
-    try:
-        _http_json(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            {"chat_id": chat_id, "text": "\n\n".join(lines)[:4000],
-             "disable_web_page_preview": True},
-        )
-        tg_debug["sent"] = True
-        print("Telegram summary sent")
-    except Exception as exc:  # noqa: BLE001 — delivery must not fail the run
-        tg_debug["send_error"] = str(exc)[:300]
-        print(f"Telegram send failed: {exc}", file=sys.stderr)
+    sent = 0
+    for message in build_telegram_messages(viral, rising, fresh, now):
+        try:
+            _http_json(
+                f"https://api.telegram.org/bot{token}/sendMessage",
+                {"chat_id": chat_id, "text": message, "parse_mode": "HTML",
+                 "disable_web_page_preview": True},
+            )
+            sent += 1
+        except Exception as exc:  # noqa: BLE001 — try again without HTML
+            try:
+                _http_json(
+                    f"https://api.telegram.org/bot{token}/sendMessage",
+                    {"chat_id": chat_id,
+                     "text": re.sub(r"<[^>]+>", "", message),
+                     "disable_web_page_preview": True},
+                )
+                sent += 1
+                tg_debug["html_fallback"] = str(exc)[:200]
+            except Exception as exc2:  # noqa: BLE001
+                tg_debug["send_error"] = str(exc2)[:300]
+                print(f"Telegram send failed: {exc2}", file=sys.stderr)
+                break
+    tg_debug["sent"] = sent > 0
+    tg_debug["messages_sent"] = sent
+    if sent:
+        print(f"Telegram report sent in {sent} message(s)")
 
 
 # --------------------------------------------------------------------------
@@ -980,7 +1045,7 @@ def main() -> int:
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=1))
     print(f"Report written to {report_path}")
 
-    send_telegram(viral, now)
+    send_telegram(viral, rising, fresh, now)
 
     DEBUG["reels_kept"] = len(reels)
     DEBUG["run_at"] = now.isoformat()
