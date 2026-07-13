@@ -35,31 +35,60 @@ from pathlib import Path
 # Configuration (override via env vars where noted)
 # --------------------------------------------------------------------------
 
-HASHTAGS: dict[str, list[str]] = {
+# Watchlist of large English-language accounts per theme. The reel
+# scraper pulls their latest reels; hashtag feeds proved useless for
+# virality hunting (Instagram serves recent small posts, not top reels).
+ACCOUNTS: dict[str, list[str]] = {
     "books": [
-        "booktok",
-        "bookstagram",
-        "bookrecommendations",
-        "readmorebooks",
+        "goodreads",
+        "epicreads",
+        "penguinrandomhouse",
+        "readwithjenna",
+        "aymansbooks",
+        "jackbenedwards",
     ],
     "success": [
-        "success",
-        "successmindset",
-        "selfimprovement",
-        "discipline",
-        "motivation",
+        "melrobbins",
+        "jayshetty",
+        "garyvee",
+        "edmylett",
+        "simonsinek",
+        "lewishowes",
+        "thegoodquote",
+        "millionaire_mentor",
     ],
     "entrepreneurship": [
+        "alexhormozi",
+        "leilahormozi",
+        "codie_sanchez",
+        "grantcardone",
+        "patrickbetdavid",
+        "danmartell",
+        "foundr",
         "entrepreneur",
-        "entrepreneurship",
-        "businessmotivation",
-        "startupgrind",
+        "noahkagan",
+        "thedankoe",
     ],
 }
 
+ACCOUNT_CATEGORY: dict[str, str] = {
+    account: category
+    for category, accounts in ACCOUNTS.items()
+    for account in accounts
+}
+
+# Optional extra source: hashtag feeds (recent posts, mostly photos —
+# low signal). Enable with REELS_USE_HASHTAGS=1.
+HASHTAGS = [
+    "booktok", "bookstagram", "successmindset", "selfimprovement",
+    "entrepreneur", "businessmotivation",
+]
+
 # Reels older than this are not "актуальные" and are skipped.
 MAX_AGE_DAYS = int(os.environ.get("REELS_MAX_AGE_DAYS", "7"))
-# Posts fetched per hashtag from Apify (affects credit usage — see README).
+# Reels fetched per watched account (affects credit usage — see README).
+REELS_PER_ACCOUNT = int(os.environ.get("REELS_PER_ACCOUNT", "5"))
+# Posts fetched per hashtag when REELS_USE_HASHTAGS=1.
 RESULTS_PER_HASHTAG = int(os.environ.get("REELS_RESULTS_LIMIT", "10"))
 # Threshold for the main report section.
 VIRAL_VIEWS = 1_000_000
@@ -69,7 +98,8 @@ RISING_MIN_VPH = int(os.environ.get("REELS_RISING_MIN_VPH", "15000"))
 # Keep per-reel history this long.
 HISTORY_RETENTION_DAYS = 30
 
-APIFY_ACTOR = os.environ.get("APIFY_ACTOR", "apify~instagram-hashtag-scraper")
+REEL_ACTOR = os.environ.get("APIFY_REEL_ACTOR", "apify~instagram-reel-scraper")
+HASHTAG_ACTOR = os.environ.get("APIFY_ACTOR", "apify~instagram-hashtag-scraper")
 APIFY_BASE = "https://api.apify.com/v2"
 APIFY_POLL_SECONDS = 15
 APIFY_MAX_WAIT_SECONDS = 15 * 60
@@ -112,13 +142,12 @@ def _http_json(url: str, payload: dict | None = None, timeout: int = 60,
         ) from None
 
 
-def fetch_posts(token: str, hashtags: list[str]) -> list[dict]:
-    """Run the Apify hashtag scraper and return raw post items."""
-    run_input = {"hashtags": hashtags, "resultsLimit": RESULTS_PER_HASHTAG}
-    start_url = f"{APIFY_BASE}/acts/{APIFY_ACTOR}/runs"
-    run = _http_json(start_url, run_input, token=token)["data"]
+def run_actor(token: str, actor: str, run_input: dict, label: str) -> list[dict]:
+    """Start an Apify actor run, wait for it, return dataset items."""
+    run = _http_json(f"{APIFY_BASE}/acts/{actor}/runs", run_input,
+                     token=token)["data"]
     run_id, dataset_id = run["id"], run["defaultDatasetId"]
-    print(f"Apify run {run_id} started for {len(hashtags)} hashtags…")
+    print(f"Apify run {run_id} ({label}) started…")
 
     status_url = f"{APIFY_BASE}/actor-runs/{run_id}"
     waited = 0
@@ -129,32 +158,53 @@ def fetch_posts(token: str, hashtags: list[str]) -> list[dict]:
         if status == "SUCCEEDED":
             break
         if status in ("FAILED", "ABORTED", "TIMED-OUT"):
-            raise RuntimeError(f"Apify run finished with status {status}")
+            raise RuntimeError(f"Apify run {label} finished as {status}")
         if waited > APIFY_MAX_WAIT_SECONDS:
-            raise RuntimeError("Apify run took too long, giving up")
+            raise RuntimeError(f"Apify run {label} took too long, giving up")
 
     items_url = (
         f"{APIFY_BASE}/datasets/{dataset_id}/items?"
         + urllib.parse.urlencode({"clean": "true", "format": "json"})
     )
     items = _http_json(items_url, timeout=120, token=token)
-    print(f"Apify returned {len(items)} items")
-    DEBUG["apify_run_id"] = run_id
-    DEBUG["items_count"] = len(items)
-    DEBUG["item_samples"] = [
-        json.dumps(i, ensure_ascii=False)[:700] for i in items[:2]
-    ]
+    print(f"Apify {label}: {len(items)} items")
+    dbg = DEBUG.setdefault("apify", {})
+    dbg[label] = {
+        "run_id": run_id,
+        "items_count": len(items),
+        "item_samples": [
+            json.dumps(i, ensure_ascii=False)[:700] for i in items[:2]
+        ],
+    }
+    return items
 
-    # The actor may return posts directly, or hashtag objects that embed
-    # topPosts/latestPosts — handle both shapes.
-    posts: list[dict] = []
-    for item in items:
-        if "topPosts" in item or "latestPosts" in item:
-            posts.extend(item.get("topPosts") or [])
-            posts.extend(item.get("latestPosts") or [])
-        else:
-            posts.append(item)
-    DEBUG["posts_after_flatten"] = len(posts)
+
+def fetch_posts(token: str) -> list[dict]:
+    """Collect candidate posts: watchlist reels + optional hashtag feeds."""
+    posts = run_actor(
+        token,
+        REEL_ACTOR,
+        {"username": list(ACCOUNT_CATEGORY), "resultsLimit": REELS_PER_ACCOUNT},
+        "reels",
+    )
+
+    if os.environ.get("REELS_USE_HASHTAGS") == "1":
+        items = run_actor(
+            token,
+            HASHTAG_ACTOR,
+            {"hashtags": HASHTAGS, "resultsLimit": RESULTS_PER_HASHTAG},
+            "hashtags",
+        )
+        # That actor may return posts directly, or hashtag objects that
+        # embed topPosts/latestPosts — handle both shapes.
+        for item in items:
+            if "topPosts" in item or "latestPosts" in item:
+                posts.extend(item.get("topPosts") or [])
+                posts.extend(item.get("latestPosts") or [])
+            else:
+                posts.append(item)
+
+    DEBUG["posts_total"] = len(posts)
     return posts
 
 
@@ -205,6 +255,9 @@ CATEGORY_KEYWORDS = {
 
 
 def categorize(post: dict) -> str:
+    owner = (post.get("ownerUsername") or post.get("username") or "").lower()
+    if owner in ACCOUNT_CATEGORY:
+        return ACCOUNT_CATEGORY[owner]
     haystack = " ".join(
         [post.get("caption") or ""] + list(post.get("hashtags") or [])
     ).lower()
@@ -258,7 +311,7 @@ def extract_reel(post: dict, now: datetime) -> dict | None:
     return {
         "shortcode": shortcode,
         "url": url or f"https://www.instagram.com/reel/{shortcode}/",
-        "author": post.get("ownerUsername") or "?",
+        "author": post.get("ownerUsername") or post.get("username") or "?",
         "caption": caption,
         "category": categorize(post),
         "views": int(views),
@@ -447,6 +500,12 @@ def send_telegram(viral: list[dict], now: datetime) -> None:
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     if not token:
         return
+    tg_debug = DEBUG.setdefault("telegram", {})
+    try:
+        me = _http_json(f"https://api.telegram.org/bot{token}/getMe")
+        tg_debug["bot_username"] = (me.get("result") or {}).get("username")
+    except Exception as exc:  # noqa: BLE001
+        tg_debug["getMe_error"] = str(exc)[:300]
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
     if not chat_id and CHAT_ID_FILE.exists():
         chat_id = CHAT_ID_FILE.read_text().strip()
@@ -507,8 +566,7 @@ def main() -> int:
         return 1
 
     now = datetime.now(timezone.utc)
-    all_tags = [t for tags in HASHTAGS.values() for t in tags]
-    posts = fetch_posts(token, all_tags)
+    posts = fetch_posts(token)
 
     reels_by_code: dict[str, dict] = {}
     for post in posts:
