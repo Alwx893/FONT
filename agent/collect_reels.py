@@ -42,14 +42,17 @@ SEARCH_QUERIES: dict[str, list[str]] = {
     "books": [
         "book recommendations",
         "books that changed my life",
+        "booktok",
     ],
     "success": [
         "self improvement",
         "success mindset",
+        "morning routine",
     ],
     "entrepreneurship": [
         "entrepreneur motivation",
         "how to start a business",
+        "make money online",
     ],
 }
 
@@ -116,7 +119,11 @@ RESULTS_PER_HASHTAG = int(os.environ.get("REELS_RESULTS_LIMIT", "10"))
 VIRAL_VIEWS = 1_000_000
 # "Rising" section: minimum current views and views/hour to be listed.
 RISING_MIN_VIEWS = int(os.environ.get("REELS_RISING_MIN_VIEWS", "100000"))
-RISING_MIN_VPH = int(os.environ.get("REELS_RISING_MIN_VPH", "15000"))
+RISING_MIN_VPH = int(os.environ.get("REELS_RISING_MIN_VPH", "10000"))
+# Candidates from history with at least this many views are re-checked
+# daily while they are younger than MAX_AGE_DAYS, so their view curve
+# keeps accumulating even when the day's search misses them.
+TRACK_MIN_VIEWS = int(os.environ.get("REELS_TRACK_MIN_VIEWS", "50000"))
 # Keep per-reel history this long.
 HISTORY_RETENTION_DAYS = 30
 
@@ -126,6 +133,7 @@ SEARCH_ACTOR = os.environ.get(
 PROFILE_ACTOR = os.environ.get(
     "APIFY_PROFILE_ACTOR", "apify~instagram-profile-scraper"
 )
+DETAIL_ACTOR = os.environ.get("APIFY_DETAIL_ACTOR", "apify~instagram-scraper")
 REEL_ACTOR = os.environ.get("APIFY_REEL_ACTOR", "apify~instagram-reel-scraper")
 HASHTAG_ACTOR = os.environ.get("APIFY_ACTOR", "apify~instagram-hashtag-scraper")
 APIFY_BASE = "https://api.apify.com/v2"
@@ -601,6 +609,10 @@ def update_history(history: dict, reels: list[dict], now: datetime) -> None:
             reel["shortcode"],
             {"post_ts": reel["posted"].isoformat(), "snapshots": []},
         )
+        entry["category"] = reel["category"]
+        entry["author"] = reel["author"]
+        if reel["followers"] is not None:
+            entry["followers"] = reel["followers"]
         entry["snapshots"].append([now_iso, reel["views"]])
 
     cutoff = now - timedelta(days=HISTORY_RETENTION_DAYS)
@@ -608,6 +620,48 @@ def update_history(history: dict, reels: list[dict], now: datetime) -> None:
         post_ts = parse_ts(history[code].get("post_ts"))
         if post_ts and post_ts < cutoff:
             del history[code]
+
+
+def refetch_tracked(token: str, history: dict, known_codes: set,
+                    now: datetime) -> list[dict]:
+    """Re-check recent viral candidates missed by today's search.
+
+    Builds the real view curve day by day, which is what turns
+    time-to-1M from an estimate into a measurement.
+    """
+    urls, meta = [], {}
+    for code, entry in history.items():
+        if code in known_codes:
+            continue
+        post_ts = parse_ts(entry.get("post_ts"))
+        if not post_ts or now - post_ts > timedelta(days=MAX_AGE_DAYS):
+            continue
+        snapshots = entry.get("snapshots") or []
+        if not snapshots or snapshots[-1][1] < TRACK_MIN_VIEWS:
+            continue
+        urls.append(f"https://www.instagram.com/reel/{code}/")
+        meta[code] = entry
+    if not urls:
+        return []
+    try:
+        items = run_actor(token, DETAIL_ACTOR,
+                          {"directUrls": urls, "resultsType": "posts"},
+                          "tracked")
+    except RuntimeError as err:
+        DEBUG["tracked_error"] = str(err)[:300]
+        return []
+    reels = []
+    for item in items:
+        reel = extract_reel(item, now)
+        if not reel:
+            continue
+        entry = meta.get(reel["shortcode"])
+        if entry:
+            reel["category"] = entry.get("category") or reel["category"]
+            if reel["followers"] is None:
+                reel["followers"] = entry.get("followers")
+        reels.append(reel)
+    return reels
 
 
 def hours_to_million(reel: dict, history: dict) -> tuple[float, bool] | None:
@@ -841,6 +895,7 @@ def main() -> int:
         return 1
 
     now = datetime.now(timezone.utc)
+    history = load_history()
     posts = fetch_posts(token)
 
     reels_by_code: dict[str, dict] = {}
@@ -848,6 +903,8 @@ def main() -> int:
         reel = extract_reel(post, now)
         if reel:
             reels_by_code.setdefault(reel["shortcode"], reel)
+    for reel in refetch_tracked(token, history, set(reels_by_code), now):
+        reels_by_code.setdefault(reel["shortcode"], reel)
     reels = list(reels_by_code.values())
     enrich_followers(token, reels)
 
@@ -866,7 +923,6 @@ def main() -> int:
     reels = kept
     print(f"{len(reels)} fresh English small-account reels after filtering")
 
-    history = load_history()
     update_history(history, reels, now)
 
     viral, rising = [], []
