@@ -6,6 +6,11 @@ on:
     # GitHub нередко задерживает cron-запуски на 10-20 минут.
     - cron: "10 4 * * *"
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "agent/**"
+      - ".github/workflows/daily-reels-report.yml"
 
 permissions:
   contents: write

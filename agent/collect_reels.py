@@ -79,6 +79,10 @@ REPORTS_DIR = REPO_ROOT / "reports"
 DATA_DIR = REPO_ROOT / "data"
 HISTORY_FILE = DATA_DIR / "reels_history.json"
 
+# Diagnostics written to data/debug_last_run.json on every run, so issues
+# can be investigated from the repo without digging into CI logs.
+DEBUG: dict = {"filters": {}}
+
 # --------------------------------------------------------------------------
 # Apify client (stdlib only)
 # --------------------------------------------------------------------------
@@ -135,6 +139,11 @@ def fetch_posts(token: str, hashtags: list[str]) -> list[dict]:
     )
     items = _http_json(items_url, timeout=120, token=token)
     print(f"Apify returned {len(items)} items")
+    DEBUG["apify_run_id"] = run_id
+    DEBUG["items_count"] = len(items)
+    DEBUG["item_samples"] = [
+        json.dumps(i, ensure_ascii=False)[:700] for i in items[:2]
+    ]
 
     # The actor may return posts directly, or hashtag objects that embed
     # topPosts/latestPosts — handle both shapes.
@@ -145,6 +154,7 @@ def fetch_posts(token: str, hashtags: list[str]) -> list[dict]:
             posts.extend(item.get("latestPosts") or [])
         else:
             posts.append(item)
+    DEBUG["posts_after_flatten"] = len(posts)
     return posts
 
 
@@ -215,6 +225,11 @@ def parse_ts(value) -> datetime | None:
         return None
 
 
+def _skip(reason: str) -> None:
+    DEBUG["filters"][reason] = DEBUG["filters"].get(reason, 0) + 1
+    return None
+
+
 def extract_reel(post: dict, now: datetime) -> dict | None:
     """Normalize a raw Apify post into a reel record, or None to skip."""
     url = post.get("url") or ""
@@ -224,20 +239,20 @@ def extract_reel(post: dict, now: datetime) -> dict | None:
         or "/reel/" in url
     )
     if not is_video:
-        return None
+        return _skip("not_video")
 
     posted = parse_ts(post.get("timestamp"))
     if posted is None or now - posted > timedelta(days=MAX_AGE_DAYS):
-        return None
+        return _skip("no_timestamp_or_too_old")
 
     caption = post.get("caption") or ""
     if not looks_english(caption):
-        return None
+        return _skip("not_english")
 
     views = post.get("videoPlayCount") or post.get("videoViewCount") or 0
     shortcode = post.get("shortCode") or url.rstrip("/").rsplit("/", 1)[-1]
     if not shortcode or not views:
-        return None
+        return _skip("no_views_or_shortcode")
 
     age_hours = max((now - posted).total_seconds() / 3600, 0.5)
     return {
@@ -413,13 +428,17 @@ CHAT_ID_FILE = DATA_DIR / "telegram_chat_id.txt"
 def discover_chat_id(token: str) -> str | None:
     """Find the chat id from the bot's recent updates (user must have
     messaged the bot at least once in the last 24h)."""
+    tg_debug = DEBUG.setdefault("telegram", {})
     try:
         data = _http_json(f"https://api.telegram.org/bot{token}/getUpdates")
-        for update in reversed(data.get("result", [])):
+        updates = data.get("result", [])
+        tg_debug["updates_count"] = len(updates)
+        for update in reversed(updates):
             chat = (update.get("message") or {}).get("chat") or {}
             if chat.get("id"):
                 return str(chat["id"])
     except Exception as exc:  # noqa: BLE001
+        tg_debug["getUpdates_error"] = str(exc)[:300]
         print(f"getUpdates failed: {exc}", file=sys.stderr)
     return None
 
@@ -456,14 +475,18 @@ def send_telegram(viral: list[dict], now: datetime) -> None:
     else:
         lines.append("Свежих роликов с 1 млн+ сегодня нет.")
     lines.append("Полный отчёт — в папке reports репозитория.")
+    tg_debug = DEBUG.setdefault("telegram", {})
+    tg_debug["chat_id"] = chat_id
     try:
         _http_json(
             f"https://api.telegram.org/bot{token}/sendMessage",
             {"chat_id": chat_id, "text": "\n\n".join(lines)[:4000],
              "disable_web_page_preview": True},
         )
+        tg_debug["sent"] = True
         print("Telegram summary sent")
     except Exception as exc:  # noqa: BLE001 — delivery must not fail the run
+        tg_debug["send_error"] = str(exc)[:300]
         print(f"Telegram send failed: {exc}", file=sys.stderr)
 
 
@@ -519,6 +542,12 @@ def main() -> int:
     print(f"Report written to {report_path}")
 
     send_telegram(viral, now)
+
+    DEBUG["reels_kept"] = len(reels)
+    DEBUG["run_at"] = now.isoformat()
+    (DATA_DIR / "debug_last_run.json").write_text(
+        json.dumps(DEBUG, ensure_ascii=False, indent=1)
+    )
     return 0
 
 
