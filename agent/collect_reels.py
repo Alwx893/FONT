@@ -222,19 +222,61 @@ _LIMIT_KEY_RE = re.compile(r"^(max_?(items|results)|results?_?limit|limit|count)
 
 
 def resolve_search_template(token: str) -> dict | None:
-    """Fetch the search actor's example run input from Apify metadata."""
+    """Recover the search actor's real input fields.
+
+    Tries a meaningful exampleRunInput first; some actors publish a
+    placeholder there ({"helloWorld": 123}), so the authoritative
+    fallback is the input schema of the actor's latest build, from
+    which a template is assembled out of prefill/default values.
+    """
     try:
         actor = _http_json(f"{APIFY_BASE}/acts/{SEARCH_ACTOR}",
                            token=token)["data"]
-        body = (actor.get("exampleRunInput") or {}).get("body")
-        template = json.loads(body) if body else None
     except Exception as exc:  # noqa: BLE001
         DEBUG["search_template_error"] = str(exc)[:300]
         return None
-    if not isinstance(template, dict):
+
+    body = (actor.get("exampleRunInput") or {}).get("body")
+    try:
+        example = json.loads(body) if body else None
+    except ValueError:
+        example = None
+    if isinstance(example, dict) and any(
+        isinstance(v, str) and v for v in example.values()
+    ):
+        DEBUG["search_input_template"] = example
+        return example
+
+    build_id = ((actor.get("taggedBuilds") or {}).get("latest") or {}) \
+        .get("buildId")
+    if not build_id:
+        DEBUG["search_schema_error"] = "no latest buildId in actor meta"
         return None
-    DEBUG["search_input_template"] = template
-    return template
+    try:
+        build = _http_json(f"{APIFY_BASE}/actor-builds/{build_id}",
+                           token=token)["data"]
+        schema = build.get("inputSchema")
+        if isinstance(schema, str):
+            schema = json.loads(schema)
+        props = (schema or {}).get("properties") or {}
+    except Exception as exc:  # noqa: BLE001
+        DEBUG["search_schema_error"] = str(exc)[:300]
+        return None
+
+    DEBUG["search_schema_keys"] = {
+        key: spec.get("type") for key, spec in props.items()
+    }
+    template: dict = {}
+    for key, spec in props.items():
+        value = spec.get("prefill", spec.get("default"))
+        if value is None and spec.get("type") == "string":
+            value = ""
+        if value is not None:
+            template[key] = value
+    if template:
+        DEBUG["search_input_template"] = template
+        return template
+    return None
 
 
 def build_search_input(template: dict, query: str) -> dict:
@@ -324,20 +366,22 @@ def fetch_posts(token: str) -> list[dict]:
     """
     posts: list[dict] = []
     first_ids: set = set()
-    query_count = 0
-    for category, queries in SEARCH_QUERIES.items():
-        for query in queries:
-            items = search_reels(token, query, f"search:{query}")
-            query_count += 1
-            if items:
-                first_ids.add(str(pick(items[0], "id", "pk", "code")))
-            for item in items:
-                item["_category"] = category
-                posts.append(item)
-    # Identical first results across different queries mean the actor
-    # ignored the query — flag it loudly for debugging.
-    if query_count > 1 and len(first_ids) == 1:
-        DEBUG["search_query_ignored"] = True
+    answered = 0
+    plan = [(cat, q) for cat, queries in SEARCH_QUERIES.items()
+            for q in queries]
+    for category, query in plan:
+        items = search_reels(token, query, f"search:{query}")
+        if items:
+            answered += 1
+            first_ids.add(str(pick(items[0], "id", "pk", "code")))
+        for item in items:
+            item["_category"] = category
+            posts.append(item)
+        # Identical first results across different queries mean the
+        # actor ignores the query — flag it and stop burning credits.
+        if answered >= 2 and len(first_ids) == 1:
+            DEBUG["search_query_ignored"] = True
+            break
 
     if os.environ.get("REELS_USE_WATCHLIST") == "1":
         for item in run_actor(
