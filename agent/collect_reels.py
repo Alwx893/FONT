@@ -35,9 +35,26 @@ from pathlib import Path
 # Configuration (override via env vars where noted)
 # --------------------------------------------------------------------------
 
-# Watchlist of large English-language accounts per theme. The reel
-# scraper pulls their latest reels; hashtag feeds proved useless for
-# virality hunting (Instagram serves recent small posts, not top reels).
+# Primary discovery: Instagram reels search by keyword. True virality
+# lives on small accounts, so authors above MAX_FOLLOWERS are dropped —
+# a million views on an 18M-follower page is just its audience showing up.
+SEARCH_QUERIES: dict[str, list[str]] = {
+    "books": [
+        "book recommendations",
+        "books that changed my life",
+    ],
+    "success": [
+        "self improvement",
+        "success mindset",
+    ],
+    "entrepreneurship": [
+        "entrepreneur motivation",
+        "how to start a business",
+    ],
+}
+
+# Optional legacy source (REELS_USE_WATCHLIST=1): reels from big
+# English-language accounts per theme. Exempt from the follower cap.
 ACCOUNTS: dict[str, list[str]] = {
     "books": [
         "goodreads",
@@ -86,6 +103,11 @@ HASHTAGS = [
 
 # Reels older than this are not "актуальные" and are skipped.
 MAX_AGE_DAYS = int(os.environ.get("REELS_MAX_AGE_DAYS", "7"))
+# Authors with more followers than this are dropped: their millions of
+# views come from subscribers, not from the algorithm going viral.
+MAX_FOLLOWERS = int(os.environ.get("REELS_MAX_FOLLOWERS", "100000"))
+# Search depth per query (pages of search results).
+SEARCH_PAGES = int(os.environ.get("REELS_SEARCH_PAGES", "2"))
 # Reels fetched per watched account (affects credit usage — see README).
 REELS_PER_ACCOUNT = int(os.environ.get("REELS_PER_ACCOUNT", "5"))
 # Posts fetched per hashtag when REELS_USE_HASHTAGS=1.
@@ -98,6 +120,9 @@ RISING_MIN_VPH = int(os.environ.get("REELS_RISING_MIN_VPH", "15000"))
 # Keep per-reel history this long.
 HISTORY_RETENTION_DAYS = 30
 
+SEARCH_ACTOR = os.environ.get(
+    "APIFY_SEARCH_ACTOR", "patient_discovery~instagram-search-reels"
+)
 REEL_ACTOR = os.environ.get("APIFY_REEL_ACTOR", "apify~instagram-reel-scraper")
 HASHTAG_ACTOR = os.environ.get("APIFY_ACTOR", "apify~instagram-hashtag-scraper")
 APIFY_BASE = "https://api.apify.com/v2"
@@ -179,14 +204,65 @@ def run_actor(token: str, actor: str, run_input: dict, label: str) -> list[dict]
     return items
 
 
-def fetch_posts(token: str) -> list[dict]:
-    """Collect candidate posts: watchlist reels + optional hashtag feeds."""
-    posts = run_actor(
-        token,
-        REEL_ACTOR,
-        {"username": list(ACCOUNT_CATEGORY), "resultsLimit": REELS_PER_ACCOUNT},
-        "reels",
+# Candidate input shapes for the search actor, tried in order until one
+# is accepted; the winner is reused for the remaining queries. Rejected
+# inputs fail at run creation (HTTP 400) before any credits are spent.
+SEARCH_INPUT_VARIANTS = (
+    lambda q: {"keyword": q, "maxPages": SEARCH_PAGES},
+    lambda q: {"query": q, "maxPages": SEARCH_PAGES},
+    lambda q: {"keyword": q},
+    lambda q: {"query": q},
+    lambda q: {"search": q},
+)
+_search_variant: int | None = None
+
+
+def search_reels(token: str, query: str, label: str) -> list[dict]:
+    global _search_variant
+    order = (
+        [_search_variant]
+        if _search_variant is not None
+        else range(len(SEARCH_INPUT_VARIANTS))
     )
+    last_err: Exception | None = None
+    for idx in order:
+        run_input = SEARCH_INPUT_VARIANTS[idx](query)
+        try:
+            items = run_actor(token, SEARCH_ACTOR, run_input, label)
+            _search_variant = idx
+            return items
+        except RuntimeError as err:
+            last_err = err
+            DEBUG.setdefault("search_input_attempts", []).append(
+                f"{label} {sorted(run_input)}: {str(err)[:200]}"
+            )
+            if "HTTP 400" not in str(err):
+                raise
+    raise last_err  # all input shapes rejected
+
+
+def fetch_posts(token: str) -> list[dict]:
+    """Collect candidates: keyword search + optional legacy sources.
+
+    Each post gets a `_category` hint from the query that found it.
+    """
+    posts: list[dict] = []
+    for category, queries in SEARCH_QUERIES.items():
+        for query in queries:
+            for item in search_reels(token, query, f"search:{query}"):
+                item["_category"] = category
+                posts.append(item)
+
+    if os.environ.get("REELS_USE_WATCHLIST") == "1":
+        for item in run_actor(
+            token,
+            REEL_ACTOR,
+            {"username": list(ACCOUNT_CATEGORY),
+             "resultsLimit": REELS_PER_ACCOUNT},
+            "watchlist",
+        ):
+            item["_watchlist"] = True
+            posts.append(item)
 
     if os.environ.get("REELS_USE_HASHTAGS") == "1":
         items = run_actor(
@@ -255,11 +331,16 @@ CATEGORY_KEYWORDS = {
 
 
 def categorize(post: dict) -> str:
-    owner = (post.get("ownerUsername") or post.get("username") or "").lower()
-    if owner in ACCOUNT_CATEGORY:
-        return ACCOUNT_CATEGORY[owner]
+    owner = post.get("ownerUsername") or post.get("username") or ""
+    if isinstance(owner, dict):
+        owner = owner.get("username") or ""
+    if owner.lower() in ACCOUNT_CATEGORY:
+        return ACCOUNT_CATEGORY[owner.lower()]
+    caption = post.get("caption") or ""
+    if isinstance(caption, dict):
+        caption = caption.get("text") or ""
     haystack = " ".join(
-        [post.get("caption") or ""] + list(post.get("hashtags") or [])
+        [caption] + list(post.get("hashtags") or [])
     ).lower()
     for cat, keys in CATEGORY_KEYWORDS.items():
         if any(k in haystack for k in keys):
@@ -283,40 +364,96 @@ def _skip(reason: str) -> None:
     return None
 
 
+def pick(d: dict, *keys, default=None):
+    """First non-empty value among several possible field names."""
+    for key in keys:
+        value = d.get(key)
+        if value not in (None, "", [], {}):
+            return value
+    return default
+
+
 def extract_reel(post: dict, now: datetime) -> dict | None:
-    """Normalize a raw Apify post into a reel record, or None to skip."""
-    url = post.get("url") or ""
+    """Normalize a raw post from any of the actors, or None to skip.
+
+    Different actors name the same fields differently (camelCase Apify
+    style vs raw Instagram API snake_case), so every field is probed
+    under all known aliases.
+    """
+    owner = pick(post, "user", "owner", default={})
+    if not isinstance(owner, dict):
+        owner = {}
+    url = pick(post, "url", "postUrl", "link", default="")
+    shortcode = pick(post, "shortCode", "code", "shortcode") or (
+        url.rstrip("/").rsplit("/", 1)[-1] if url else ""
+    )
+    views = pick(
+        post, "videoPlayCount", "playCount", "play_count",
+        "videoViewCount", "viewCount", "view_count", default=0,
+    )
+
     is_video = (
         post.get("type") == "Video"
         or post.get("productType") in ("clips", "reels", "igtv")
+        or post.get("product_type") in ("clips", "reels")
+        or post.get("media_type") == 2
         or "/reel/" in url
+        or bool(pick(post, "playCount", "play_count", "videoPlayCount"))
     )
     if not is_video:
         return _skip("not_video")
 
-    posted = parse_ts(post.get("timestamp"))
+    posted = parse_ts(
+        pick(post, "timestamp", "taken_at", "takenAt", "taken_at_timestamp")
+    )
     if posted is None or now - posted > timedelta(days=MAX_AGE_DAYS):
         return _skip("no_timestamp_or_too_old")
 
-    caption = post.get("caption") or ""
+    caption = pick(post, "caption", "caption_text", default="")
+    if isinstance(caption, dict):
+        caption = caption.get("text") or ""
     if not looks_english(caption):
         return _skip("not_english")
 
-    views = post.get("videoPlayCount") or post.get("videoViewCount") or 0
-    shortcode = post.get("shortCode") or url.rstrip("/").rsplit("/", 1)[-1]
     if not shortcode or not views:
         return _skip("no_views_or_shortcode")
 
+    followers = pick(
+        owner, "follower_count", "followersCount", "followers",
+        default=pick(post, "followersCount", "ownerFollowersCount"),
+    )
+    if isinstance(followers, dict):  # e.g. edge_followed_by: {"count": N}
+        followers = followers.get("count")
+    if followers is not None:
+        followers = int(followers)
+
+    # The whole point: keep only small accounts, where big view counts
+    # mean the algorithm pushed the reel, not the author's own audience.
+    if not post.get("_watchlist"):
+        if followers is None:
+            return _skip("no_followers_data")
+        if followers > MAX_FOLLOWERS:
+            return _skip("too_many_followers")
+
+    author = (
+        pick(post, "ownerUsername")
+        or pick(owner, "username", "handle")
+        or pick(post, "username")
+        or "?"
+    )
     age_hours = max((now - posted).total_seconds() / 3600, 0.5)
+    views = int(views)
     return {
         "shortcode": shortcode,
         "url": url or f"https://www.instagram.com/reel/{shortcode}/",
-        "author": post.get("ownerUsername") or post.get("username") or "?",
+        "author": author,
         "caption": caption,
-        "category": categorize(post),
-        "views": int(views),
-        "likes": int(post.get("likesCount") or 0),
-        "comments": int(post.get("commentsCount") or 0),
+        "category": post.get("_category") or categorize(post),
+        "views": views,
+        "followers": followers,
+        "likes": int(pick(post, "likesCount", "like_count", default=0)),
+        "comments": int(pick(post, "commentsCount", "comment_count",
+                             default=0)),
         "posted": posted,
         "age_hours": age_hours,
         "vph": int(views / age_hours),
@@ -401,13 +538,26 @@ def snippet(caption: str, limit: int = 70) -> str:
     return text[:limit] + ("…" if len(text) > limit else "")
 
 
+def fmt_multiplier(reel: dict) -> str:
+    if not reel.get("followers"):
+        return "—"
+    return f"×{reel['views'] / max(reel['followers'], 1):.0f}"
+
+
+def fmt_followers(reel: dict) -> str:
+    return fmt_views(reel["followers"]) if reel.get("followers") else "?"
+
+
 def build_report(viral: list[dict], rising: list[dict], now: datetime) -> str:
     date_str = now.strftime("%d.%m.%Y")
     lines = [
         f"# 🎬 Утренний отчёт по Instagram Reels — {date_str}",
         "",
         "Темы: книги, успех, предпринимательство (англоязычные ролики).",
-        f"Учитываются только свежие ролики — не старше {MAX_AGE_DAYS} дн.",
+        f"Только авторы до {fmt_views(MAX_FOLLOWERS)} подписчиков — ловим ролики,",
+        "которые разогнал алгоритм, а не собственная аудитория канала.",
+        f"Только свежие ролики — не старше {MAX_AGE_DAYS} дн. "
+        f"«×аудитория» — во сколько раз просмотры превысили число подписчиков.",
         f"Данные сняты {now.strftime('%d.%m.%Y %H:%M UTC')}.",
         "",
         f"## 🏆 Пробили 1 млн просмотров — {len(viral)} шт.",
@@ -417,15 +567,15 @@ def build_report(viral: list[dict], rising: list[dict], now: datetime) -> str:
     ]
     if viral:
         lines += [
-            "| # | До 1 млн | Точность | Тема | Просмотры | В час | Возраст | Автор | Ролик |",
-            "|---|----------|----------|------|-----------|-------|---------|-------|-------|",
+            "| # | До 1 млн | Точность | Тема | Просмотры | Подписчики | ×аудитория | Автор | Ролик |",
+            "|---|----------|----------|------|-----------|------------|------------|-------|-------|",
         ]
         for i, r in enumerate(viral, 1):
             mark = "✅ замерено" if r["measured"] else "≈ оценка"
             lines.append(
                 f"| {i} | **{fmt_hours(r['ttm'])}** | {mark} "
                 f"| {CATEGORY_LABELS[r['category']]} | {fmt_views(r['views'])} "
-                f"| {fmt_views(r['vph'])} | {fmt_hours(r['age_hours'])} "
+                f"| {fmt_followers(r)} | **{fmt_multiplier(r)}** "
                 f"| @{r['author']} | [{snippet(r['caption'], 45) or r['shortcode']}]({r['url']}) |"
             )
     else:
@@ -441,15 +591,16 @@ def build_report(viral: list[dict], rising: list[dict], now: datetime) -> str:
     ]
     if rising:
         lines += [
-            "| # | Прогноз до 1 млн | Тема | Просмотры | В час | Возраст | Автор | Ролик |",
-            "|---|------------------|------|-----------|-------|---------|-------|-------|",
+            "| # | Прогноз до 1 млн | Тема | Просмотры | Подписчики | ×аудитория | В час | Автор | Ролик |",
+            "|---|------------------|------|-----------|------------|------------|-------|-------|-------|",
         ]
         for i, r in enumerate(rising, 1):
             eta = (VIRAL_VIEWS - r["views"]) / max(r["vph"], 1)
             lines.append(
                 f"| {i} | ~{fmt_hours(r['age_hours'] + eta)} "
                 f"| {CATEGORY_LABELS[r['category']]} | {fmt_views(r['views'])} "
-                f"| {fmt_views(r['vph'])} | {fmt_hours(r['age_hours'])} "
+                f"| {fmt_followers(r)} | {fmt_multiplier(r)} "
+                f"| {fmt_views(r['vph'])} "
                 f"| @{r['author']} | [{snippet(r['caption'], 45) or r['shortcode']}]({r['url']}) |"
             )
     else:
@@ -524,12 +675,13 @@ def send_telegram(viral: list[dict], now: datetime) -> None:
     top = viral[:5]
     lines = [f"🎬 Reels-отчёт {now.strftime('%d.%m.%Y')}"]
     if top:
-        lines.append("Быстрее всех до 1 млн:")
+        lines.append("Быстрее всех до 1 млн (авторы < "
+                     f"{fmt_views(MAX_FOLLOWERS)} подписчиков):")
         for i, r in enumerate(top, 1):
             mark = "" if r["measured"] else " (≈)"
             lines.append(
                 f"{i}. {fmt_hours(r['ttm'])}{mark} · {fmt_views(r['views'])} "
-                f"· @{r['author']}\n{r['url']}"
+                f"({fmt_multiplier(r)} к аудитории) · @{r['author']}\n{r['url']}"
             )
     else:
         lines.append("Свежих роликов с 1 млн+ сегодня нет.")
