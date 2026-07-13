@@ -1,93 +1,104 @@
 {
  "filters": {
-  "no_timestamp_or_too_old": 36
+  "no_timestamp_or_too_old": 140
+ },
+ "search_schema_keys": {
+  "query": "string",
+  "maxPages": "integer"
  },
  "search_input_template": {
-  "helloWorld": 123
+  "query": "trending",
+  "maxPages": 1
  },
  "apify": {
   "search:book recommendations": {
-   "run_id": "sJOgwDsI91O0z0tbj",
-   "items_count": 6,
+   "run_id": "uMbiDEdjJynrDhTxo",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783919040, \"created_at_utc\": 1783919040, \"did_report_as_spam\": false, \"hashtags\": [\"#reels\", \"#vairal\", \"#trending\", \"#facial\", \"#salon\"], \"id\": \"3927804209931378301\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"New facial…✂️🧑‍🦱\\n\\n#reels #vairal #trending #facial #salon\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841476155147823\", \"full_name\": \"Rashid Mk\", \"id\": \"76302586504\", \"is_private\": f",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1782799428, \"created_at_utc\": 1782799428, \"did_report_as_spam\": false, \"hashtags\": [\"#instagood\", \"#viralreels\", \"#reels\", \"#friends\", \"#trending\"], \"id\": \"3930726828489756382\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"💔🫗\\n.\\n.\\n.\\n.\\n.\\n.\\n.\\n#instagood #viralreels #reels #friends #trending\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841477127998706\", \"full_name\": \"ᴀᴄᴛɪᴏɴ sᴛᴀʀs\", \"id\": \"771"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1774982598, \"created_at_utc\": 1774982598, \"did_report_as_spam\": false, \"hashtags\": [\"#booksbooksbooks\", \"#bookstagram\", \"#booktok\", \"#bookrecs\", \"#bookrecommendations\"], \"id\": \"3865156002399683050\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"UGH SO MANY GOOD BOOKS THIS MONTH 📖🥰!!! Had the best time reading these & shed lots of tears lol…hope you friends had a lovely March & read lots o",
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 60, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1777301787, \"created_at_utc\": 1777301787, \"did_report_as_spam\": false, \"hashtags\": [\"#bookstagram\", \"#bookrecommendations\", \"#doomscrolling\"], \"id\": \"3884609957312480612\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"6 books that were actually better than scrolling reels😭🤏🏻 These made me put my phone down and not check it even once for hours! What’s that one"
    ]
   },
   "search:books that changed my life": {
-   "run_id": "bdbzwfxkJ7xjdslCx",
-   "items_count": 6,
+   "run_id": "1asPkUfLEiV2qiVzF",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783919040, \"created_at_utc\": 1783919040, \"did_report_as_spam\": false, \"hashtags\": [\"#reels\", \"#vairal\", \"#trending\", \"#facial\", \"#salon\"], \"id\": \"3927804209931378301\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"New facial…✂️🧑‍🦱\\n\\n#reels #vairal #trending #facial #salon\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841476155147823\", \"full_name\": \"Rashid Mk\", \"id\": \"76302586504\", \"is_private\": f",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1782799428, \"created_at_utc\": 1782799428, \"did_report_as_spam\": false, \"hashtags\": [\"#instagood\", \"#viralreels\", \"#reels\", \"#friends\", \"#trending\"], \"id\": \"3930726828489756382\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"💔🫗\\n.\\n.\\n.\\n.\\n.\\n.\\n.\\n#instagood #viralreels #reels #friends #trending\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841477127998706\", \"full_name\": \"ᴀᴄᴛɪᴏɴ sᴛᴀʀs\", \"id\": \"771"
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 347, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1776897822, \"created_at_utc\": 1776897822, \"did_report_as_spam\": false, \"hashtags\": [\"#selfimprovement\", \"#mindset\", \"#character\", \"#psychology\", \"#philosophy\"], \"id\": \"3881221155898440904\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Here are a few books that changed my life. \\n\\nRanging from Stoicism, Logo-therapy, Psychology, The Ubermensch, and Absurdis",
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 217, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1760747821, \"created_at_utc\": 1760747821, \"did_report_as_spam\": false, \"hashtags\": [\"#book\", \"#books\", \"#selfhelpbooks\", \"#selfdiscovery\", \"#growthmindset\", \"#perspective\", \"#writer\", \"#author\", \"#authorsofinstagram\", \"#bookshelf\", \"#bookstagram\"], \"id\": \"3745742998811282021\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@dimensionsbook\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"6 books that change"
    ]
   },
   "search:self improvement": {
-   "run_id": "0lx0h0MfjX4PRMSKP",
-   "items_count": 6,
+   "run_id": "DZAb4CIucKMzr6Pn0",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783919040, \"created_at_utc\": 1783919040, \"did_report_as_spam\": false, \"hashtags\": [\"#reels\", \"#vairal\", \"#trending\", \"#facial\", \"#salon\"], \"id\": \"3927804209931378301\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"New facial…✂️🧑‍🦱\\n\\n#reels #vairal #trending #facial #salon\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841476155147823\", \"full_name\": \"Rashid Mk\", \"id\": \"76302586504\", \"is_private\": f",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1782799428, \"created_at_utc\": 1782799428, \"did_report_as_spam\": false, \"hashtags\": [\"#instagood\", \"#viralreels\", \"#reels\", \"#friends\", \"#trending\"], \"id\": \"3930726828489756382\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"💔🫗\\n.\\n.\\n.\\n.\\n.\\n.\\n.\\n#instagood #viralreels #reels #friends #trending\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841477127998706\", \"full_name\": \"ᴀᴄᴛɪᴏɴ sᴛᴀʀs\", \"id\": \"771"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1765663288, \"created_at_utc\": 1765663288, \"did_report_as_spam\": false, \"hashtags\": [\"#personalgrowth\", \"#lifestyle\", \"#healthliving\", \"#mindsetmatters\", \"#successmindset\", \"#selfimprovement\", \"#motivation\", \"#coffeeaestheitc\", \"#cinematiclook\", \"#cinematic\", \"#discipline\"], \"id\": \"3739606881233635976\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Comment ‘grade’ to get my lut used in thi",
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 267, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1775836459, \"created_at_utc\": 1775836459, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3872318575579377169\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"The vicious cycle of self improvement and self destruction.\\n\\nFull video on YouTube.\\n\\n(FYI - treating YouTube as my “main” platform now. Prioritizing long form, thoughtful media there. Posting as"
    ]
   },
   "search:success mindset": {
-   "run_id": "hq573FkbBaqoghmV4",
-   "items_count": 6,
+   "run_id": "1wyhVhmp28ekb6WWD",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783919040, \"created_at_utc\": 1783919040, \"did_report_as_spam\": false, \"hashtags\": [\"#reels\", \"#vairal\", \"#trending\", \"#facial\", \"#salon\"], \"id\": \"3927804209931378301\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"New facial…✂️🧑‍🦱\\n\\n#reels #vairal #trending #facial #salon\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841476155147823\", \"full_name\": \"Rashid Mk\", \"id\": \"76302586504\", \"is_private\": f",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1782799428, \"created_at_utc\": 1782799428, \"did_report_as_spam\": false, \"hashtags\": [\"#instagood\", \"#viralreels\", \"#reels\", \"#friends\", \"#trending\"], \"id\": \"3930726828489756382\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"💔🫗\\n.\\n.\\n.\\n.\\n.\\n.\\n.\\n#instagood #viralreels #reels #friends #trending\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841477127998706\", \"full_name\": \"ᴀᴄᴛɪᴏɴ sᴛᴀʀs\", \"id\": \"771"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779021733, \"created_at_utc\": 1779021733, \"did_report_as_spam\": false, \"hashtags\": [\"#theartline\", \"#successmindset\", \"#motivation\", \"#discipline\", \"#hardwork\"], \"id\": \"3899038901968635173\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"“No matter how many people try to pull you down…\\nKeep climbing toward your success. 🏆🔥”\\n#theartline #successmindset #motivation #discipline #hardwork\", ",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1752836407, \"created_at_utc\": 1752836407, \"did_report_as_spam\": false, \"hashtags\": [\"#successmindset\", \"#mindset\", \"#motivation\"], \"id\": \"3677961759210846715\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Real talk\\n\\nCredit: Modern Wisdom pod, Interlinked\\nNo copyright infringement intended, DM for removal\\n\\n#successmindset #mindset #motivation\", \"type\": 1, \"user\": {\"fbid_v2\": \"1784146"
    ]
   },
   "search:entrepreneur motivation": {
-   "run_id": "jSmhl4rjcLwdFuC4T",
-   "items_count": 6,
+   "run_id": "od8DgQCpLd7XmOfHC",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783919040, \"created_at_utc\": 1783919040, \"did_report_as_spam\": false, \"hashtags\": [\"#reels\", \"#vairal\", \"#trending\", \"#facial\", \"#salon\"], \"id\": \"3927804209931378301\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"New facial…✂️🧑‍🦱\\n\\n#reels #vairal #trending #facial #salon\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841476155147823\", \"full_name\": \"Rashid Mk\", \"id\": \"76302586504\", \"is_private\": f",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1782799428, \"created_at_utc\": 1782799428, \"did_report_as_spam\": false, \"hashtags\": [\"#instagood\", \"#viralreels\", \"#reels\", \"#friends\", \"#trending\"], \"id\": \"3930726828489756382\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"💔🫗\\n.\\n.\\n.\\n.\\n.\\n.\\n.\\n#instagood #viralreels #reels #friends #trending\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841477127998706\", \"full_name\": \"ᴀᴄᴛɪᴏɴ sᴛᴀʀs\", \"id\": \"771"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1765977406, \"created_at_utc\": 1765977406, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3789614750456850173\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Success Pane Ka Secret 🦅😳 \\n\\ntime, entrepreneur, Self Development, Personal Brand, Mindset, Productivity, Focus, LifeGoals, Indian Wisdom Success Mindset, Inner Peace Mental Wellness, ConfidenceBoost, Achieve Your Dreams, Life l",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1777127101, \"created_at_utc\": 1777127101, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3883144839562825530\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"They all prove that it was never about office🔥\\n\\n[ India, Rupees, Startup, Entrepreneur, Growth, Success, Motivation ]\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841434747805292\", \"full_name\": \"Rupees\", \"id\": \"34602342260\", \"is_private"
    ]
   },
   "search:how to start a business": {
-   "run_id": "Kgd1k799ffHfyCkyh",
-   "items_count": 6,
+   "run_id": "nXoXxi0ZhHVFODIhm",
+   "items_count": 21,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783919040, \"created_at_utc\": 1783919040, \"did_report_as_spam\": false, \"hashtags\": [\"#reels\", \"#vairal\", \"#trending\", \"#facial\", \"#salon\"], \"id\": \"3927804209931378301\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"New facial…✂️🧑‍🦱\\n\\n#reels #vairal #trending #facial #salon\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841476155147823\", \"full_name\": \"Rashid Mk\", \"id\": \"76302586504\", \"is_private\": f",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1782799428, \"created_at_utc\": 1782799428, \"did_report_as_spam\": false, \"hashtags\": [\"#instagood\", \"#viralreels\", \"#reels\", \"#friends\", \"#trending\"], \"id\": \"3930726828489756382\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"💔🫗\\n.\\n.\\n.\\n.\\n.\\n.\\n.\\n#instagood #viralreels #reels #friends #trending\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841477127998706\", \"full_name\": \"ᴀᴄᴛɪᴏɴ sᴛᴀʀs\", \"id\": \"771"
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 372, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1775382828, \"created_at_utc\": 1775382828, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3826017777430129023\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"You need to know these 5 points before you start your business 💡 \\n1.  ROI\\n2. Cash flow \\n3. CAC & LTV\\n4. Break even \\n5. The cost of your time\\n\\nUPDATE! Since this went super viral, I’ve made a ",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1768665605, \"created_at_utc\": 1768665605, \"did_report_as_spam\": false, \"hashtags\": [\"#dropshipping\", \"#onlinebusiness\", \"#ecommerce\", \"#dropshippingtips\", \"#onlinestore\"], \"id\": \"3812166185937379868\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Follow & Comment “W” 📝\\n\\n#dropshipping #onlinebusiness #ecommerce #dropshippingtips #onlinestore\", \"type\": 1, \"user\": {\"fbid_v2\": \"178414480949"
+   ]
+  },
+  "profiles": {
+   "run_id": "Ik0g6dOTFdeaRXTHb",
+   "items_count": 1,
+   "item_samples": [
+    "{\"inputUrl\": \"https://www.instagram.com/mindset.brandon\", \"id\": \"31491828544\", \"username\": \"mindset.brandon\", \"url\": \"https://www.instagram.com/mindset.brandon\", \"fullName\": \"Brandon Charles\", \"biography\": \"Rewiring my brain was the best thing that ever happened to me 🧠\", \"externalUrls\": [{\"title\": \"deepstash\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fdeepstash.com%2Fgrowth-plan%2F%3Futm_source%3DUGC%26utm_medium%3Dig%26utm_campaign%3Dbrandon&e=AUBy--biLSs0p6KmeVm2Ml11vl-iU5VjpVaz7AxBaqFd5J8VZRgAFGG3wPY5G7DP_CDg9Iqe6WIFBc08B4xoDFqrfx9s3EOB\", \"url\": \"https://deepstash.com/growth-plan/?utm_source=UGC&utm_medium=ig&utm_campaign=brandon\", \"link_type\": \"external\"}], \"externalUrl\": \"h"
    ]
   }
  },
  "search_inputs_used": {
   "search:book recommendations": {
-   "helloWorld": 123,
-   "keyword": "book recommendations"
+   "query": "book recommendations",
+   "maxPages": 2
   },
   "search:books that changed my life": {
-   "helloWorld": 123,
-   "keyword": "books that changed my life"
+   "query": "books that changed my life",
+   "maxPages": 2
   },
   "search:self improvement": {
-   "helloWorld": 123,
-   "keyword": "self improvement"
+   "query": "self improvement",
+   "maxPages": 2
   },
   "search:success mindset": {
-   "helloWorld": 123,
-   "keyword": "success mindset"
+   "query": "success mindset",
+   "maxPages": 2
   },
   "search:entrepreneur motivation": {
-   "helloWorld": 123,
-   "keyword": "entrepreneur motivation"
+   "query": "entrepreneur motivation",
+   "maxPages": 2
   },
   "search:how to start a business": {
-   "helloWorld": 123,
-   "keyword": "how to start a business"
+   "query": "how to start a business",
+   "maxPages": 2
   }
  },
- "search_query_ignored": true,
- "posts_total": 36,
+ "posts_total": 141,
  "telegram": {
   "bot_username": "Paired_tgbot",
   "chat_id": "730601273",
   "sent": true
  },
- "reels_kept": 0,
- "run_at": "2026-07-13T07:11:16.314665+00:00"
+ "reels_kept": 1,
+ "run_at": "2026-07-13T07:15:10.569344+00:00"
 }
