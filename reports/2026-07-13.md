@@ -4,7 +4,7 @@
 Только авторы до 1.0 млн подписчиков — ловим ролики,
 которые разогнал алгоритм, а не собственная аудитория канала.
 Только свежие ролики — не старше 7 дн. «×аудитория» — во сколько раз просмотры превысили число подписчиков.
-Данные сняты 13.07.2026 18:47 UTC.
+Данные сняты 13.07.2026 18:56 UTC.
 
 ## 🏆 Пробили 1 млн просмотров — 2 шт.
 
@@ -36,7 +36,7 @@
 | 1 | 📚 Книги | 76 тыс | 45 тыс | ×2 | 1 тыс | 2.9 дн | @katemariesecret | [Feeling something while reading>>> #booktok #…](https://www.instagram.com/p/DaoDRn3BQmz/) |
 | 2 | 📚 Книги | 99 тыс | 392 тыс | ×0 | 1 тыс | 4.4 дн | @readwithjenna | [On the newest episode of the Open Book with J…](https://www.instagram.com/p/DakJCI6DnFu/) |
 | 3 | 📚 Книги | 238 тыс | 951 тыс | ×0 | 3 тыс | 3.1 дн | @jackbenedwards | [Trying to find the ultimate summer book to fo…](https://www.instagram.com/p/DanlhznNuoB/) |
-| 4 | 📚 Книги | 54 тыс | 362 тыс | ×0 | 1 тыс | 3.9 дн | @aymansbooks | [this duology felt like 3 arrows in the chest …](https://www.instagram.com/p/DalanrxxtZw/) |
+| 4 | 📚 Книги | 54 тыс | 362 тыс | ×0 | 1 тыс | 4.0 дн | @aymansbooks | [this duology felt like 3 arrows in the chest …](https://www.instagram.com/p/DalanrxxtZw/) |
 | 5 | 📚 Книги | 102 тыс | 703 тыс | ×0 | 2 тыс | 2.0 дн | @epicreads | [training camp arc iykyk](https://www.instagram.com/p/DaqZEQsGvNL/) |
 | 6 | 📚 Книги | 65 тыс | 659 тыс | ×0 | 1 тыс | 3.1 дн | @therealjencohen | [Stop trying to solve people who have already …](https://www.instagram.com/p/Dankgn2oqYD/) |
 | 7 | 📚 Книги | 64 тыс | 703 тыс | ×0 | 1 тыс | 2.9 дн | @epicreads | [sometimes you need a good cathartic book cry!…](https://www.instagram.com/p/DaoD1muEYMi/) |

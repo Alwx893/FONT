@@ -13,7 +13,7 @@
  },
  "apify": {
   "search:book recommendations": {
-   "run_id": "xSJWUPcCKzJu0SThp",
+   "run_id": "IcTKNGrbUcuP4WE9w",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 158, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1765836533, \"created_at_utc\": 1765836533, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3788424975988323687\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"sometimes I judge very popular books too quickly without having read them and many times they end up surprising me in a good way 😇 Has it happened to you with some? 📚🤎\\n\\n[ my favorite books , book ",
@@ -21,7 +21,7 @@
    ]
   },
   "search:books that changed my life": {
-   "run_id": "JBMoi0zKbodamLMFK",
+   "run_id": "QzFdtZJEfPwr5mFtr",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 347, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1776897822, \"created_at_utc\": 1776897822, \"did_report_as_spam\": false, \"hashtags\": [\"#selfimprovement\", \"#mindset\", \"#character\", \"#psychology\", \"#philosophy\"], \"id\": \"3881221155898440904\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Here are a few books that changed my life. \\n\\nRanging from Stoicism, Logo-therapy, Psychology, The Ubermensch, and Absurdis",
@@ -29,7 +29,7 @@
    ]
   },
   "search:booktok": {
-   "run_id": "rhk4wrtZZ1TjdsQnH",
+   "run_id": "bL4j5vWf9ehTcboim",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1781386664, \"created_at_utc\": 1781386664, \"did_report_as_spam\": false, \"hashtags\": [\"#bookstagram\", \"#booktok\", \"#bookish\", \"#booksta\"], \"id\": \"3918877701441649902\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"you’d never guess fake dating is my favourite trope 🙂‍↕️.\\n.\\n.\\n.\\n.\\n.\\n#bookstagram #booktok #bookish #booksta\", \"text_translation\": \"you’d never guess fake dating is my favour",
@@ -37,7 +37,7 @@
    ]
   },
   "search:self improvement": {
-   "run_id": "Tv98UbNM8hdgKw1Tc",
+   "run_id": "WPxq5VRjnGlCkzvjj",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1776158368, \"created_at_utc\": 1776158368, \"did_report_as_spam\": false, \"hashtags\": [\"#motivation\", \"#selfgrowth\", \"#inspiration\", \"#mindsetmatters\", \"#selfimprovement\"], \"id\": \"3875019479503895575\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"People overestimate talent.\\n\\nThey think it’s what makes the difference.\\n\\nIt helps, sure.\\n\\nBut it doesn’t mean much if you don’t show up.\\n\\n",
@@ -45,7 +45,7 @@
    ]
   },
   "search:success mindset": {
-   "run_id": "FJT8gp9UdLY3VJEDC",
+   "run_id": "wtDHM8icql60F75XV",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779021733, \"created_at_utc\": 1779021733, \"did_report_as_spam\": false, \"hashtags\": [\"#theartline\", \"#successmindset\", \"#motivation\", \"#discipline\", \"#hardwork\"], \"id\": \"3899038901968635173\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"“No matter how many people try to pull you down…\\nKeep climbing toward your success. 🏆🔥”\\n#theartline #successmindset #motivation #discipline #hardwork\", ",
@@ -53,7 +53,7 @@
    ]
   },
   "search:morning routine": {
-   "run_id": "lrfLunonDIC8WyTgj",
+   "run_id": "4XKr1aUVmm4W8pDOx",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1771343597, \"created_at_utc\": 1771343597, \"did_report_as_spam\": false, \"hashtags\": [\"#morningroutine\", \"#morningvlog\", \"#thatgirl\"], \"id\": \"3834630395153755059\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"the morning routine that makes me feel like THAT GIRL ✨🧸#morningroutine #morningvlog #thatgirl\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841401465410335\", \"full_name\": \"zoe pritchard\", \"id\"",
@@ -61,7 +61,7 @@
    ]
   },
   "search:entrepreneur motivation": {
-   "run_id": "ZrEAh9YnoDSxal3cd",
+   "run_id": "dm4ahnTR6ZYkBUBtk",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1771859171, \"created_at_utc\": 1771859171, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3838955163180979884\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Entrepreneurship isn’t sexy. It’s lonely. It’s brutal. It’s misunderstood.\\n \\nAnd then one day… You’ll get respected. Most people quit before that day. Will you?\", \"text_translation\": \"Entrepreneurship isn’t sexy. It’s lonely. I",
@@ -69,7 +69,7 @@
    ]
   },
   "search:how to start a business": {
-   "run_id": "zYmqAdhCSm6smMpYh",
+   "run_id": "ca0GdGM4dcht25WFA",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 372, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1775382828, \"created_at_utc\": 1775382828, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3826017777430129023\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"You need to know these 5 points before you start your business 💡 \\n1.  ROI\\n2. Cash flow \\n3. CAC & LTV\\n4. Break even \\n5. The cost of your time\\n\\nUPDATE! Since this went super viral, I’ve made a ",
@@ -77,24 +77,24 @@
    ]
   },
   "search:make money online": {
-   "run_id": "hXBEa0MBRqU9BGNtC",
+   "run_id": "Sfa1b1RI4jwu2x81z",
    "items_count": 0,
    "item_samples": []
   },
   "tracked": {
-   "run_id": "6I536Ev81N2Fikiq8",
+   "run_id": "9t3kyM08MAZUYgQ5j",
    "items_count": 33,
    "item_samples": [
-    "{\"inputUrl\": \"https://www.instagram.com/reel/DarbwJWzAKj/\", \"id\": \"3939364354902459043\", \"type\": \"Video\", \"shortCode\": \"DarbwJWzAKj\", \"caption\": \"The invisible problem solving that never makes the highlight reel finally gets its moment.\", \"hashtags\": [], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DarbwJWzAKj/\", \"commentsCount\": 19, \"firstComment\": \"The invisible problem-solving is real. The part nobody mentions is that the radar doesn't have an off switch. The same instinct that catches problems before they surface keeps scanning when there's nothing there — so the business runs clean and you're still braced for the thing that isn't coming. Great for the business. Quietly expensive ",
-    "{\"inputUrl\": \"https://www.instagram.com/reel/DalanrxxtZw/\", \"id\": \"3937670525480261232\", \"type\": \"Video\", \"shortCode\": \"DalanrxxtZw\", \"caption\": \"this duology felt like 3 arrows in the chest #theseimmortaltruths #thesegodlylies [A D]\", \"hashtags\": [\"theseimmortaltruths\", \"thesegodlylies\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DalanrxxtZw/\", \"commentsCount\": 27, \"firstComment\": \"👏👏👏🔥\", \"latestComments\": [{\"id\": \"18104823853846191\", \"text\": \"👏👏👏🔥\", \"ownerUsername\": \"mohammadreza.gadimi\", \"ownerProfilePicUrl\": \"https://scontent-mia3-2.cdninstagram.com/v/t51.82787-19/517993682_17844350400532282_2232576080494149229_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=103&ccb=7-5&_nc_sid=f7ccc5&e"
+    "{\"inputUrl\": \"https://www.instagram.com/reel/Dak5eeiqAfM/\", \"id\": \"3937524757257783244\", \"type\": \"Video\", \"shortCode\": \"Dak5eeiqAfM\", \"caption\": \"Goals aren’t just some self help non sense they’re what determine how you perceive opportunity and act within the world\", \"hashtags\": [], \"mentions\": [], \"url\": \"https://www.instagram.com/p/Dak5eeiqAfM/\", \"commentsCount\": 41, \"firstComment\": \"Im very interested into reading your books, i will order them. A french and spanish traduction would be great for your larger audience. Greetings from Québec,  Canada. 👋\", \"latestComments\": [{\"id\": \"17898845154470864\", \"text\": \"Im very interested into reading your books, i will order them. A french and spanish",
+    "{\"inputUrl\": \"https://www.instagram.com/reel/DallVQ1SBoh/\", \"id\": \"3937717638109076001\", \"type\": \"Video\", \"shortCode\": \"DallVQ1SBoh\", \"caption\": \"You are yet to reach your prime keep going #learning #selfimprovement #mind\", \"hashtags\": [\"learning\", \"selfimprovement\", \"mind\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DallVQ1SBoh/\", \"commentsCount\": 689, \"firstComment\": \"Book\", \"latestComments\": [{\"id\": \"18143175685537112\", \"text\": \"Book\", \"ownerUsername\": \"thegolem2311\", \"ownerProfilePicUrl\": \"https://scontent-iad3-1.cdninstagram.com/v/t51.82787-19/670272138_17907043410385599_5876970109670569043_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZ"
    ]
   },
   "profiles": {
-   "run_id": "gWFb8MLzEPQetLRD8",
-   "items_count": 18,
+   "run_id": "ro8rFfwFUpzdGzKLf",
+   "items_count": 13,
    "item_samples": [
-    "{\"inputUrl\": \"https://www.instagram.com/__itslittlebee\", \"id\": \"1518623832\", \"username\": \"__itslittlebee\", \"url\": \"https://www.instagram.com/__itslittlebee\", \"fullName\": \"Bianca\", \"biography\": \"🇵🇭🇦🇺 | 29 | BNE\\n📧 business.littlebee@gmail.com\\nUse code: BEE88 -> @ttd_eye\", \"externalUrls\": [{\"title\": \"Twitch\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Ftwitch.tv%2Fits_littlebee&e=AUAFKlYE14G37G7MMPyVUzQkUHvrwvwlpQal1-LjP0c5LFVu6KxoXIQH13IwZgSc2WNNhMa7YAdMWsMs0NZi6Zg1bWdfACLb\", \"url\": \"https://twitch.tv/its_littlebee\", \"link_type\": \"external\"}], \"externalUrl\": \"https://twitch.tv/its_littlebee\", \"externalUrlShimmed\": \"https://l.instagram.com/?u=https%3A%2F%2Ftwitch.tv%2Fits_littlebee&",
-    "{\"inputUrl\": \"https://www.instagram.com/thedankoe\", \"id\": \"4551686039\", \"username\": \"thedankoe\", \"url\": \"https://www.instagram.com/thedankoe\", \"fullName\": \"DAN KOE\", \"biography\": \"building @edendotso and @drink.sonder\\njoin the next content bootcamp:\", \"externalUrls\": [{\"title\": \"Learn the AI skill in 30 days\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Feden.so%2Fbootcamp&e=AUB3r_HUGe_etalOOmouL0GQZQiv2UBdqW8zlb9yfVwgY96MkQITNQx_YthLRLSPV6rYbhQwY3suQpoZM256lNU8PcckuTsB\", \"url\": \"https://eden.so/bootcamp\", \"link_type\": \"external\"}, {\"title\": \"Read the letters\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fletters.thedankoe.com%2F&e=AUDQarvrZHgYVBtpGOrgIrT6KpmG2HPglwsg-Q0LC"
+    "{\"inputUrl\": \"https://www.instagram.com/thedankoe\", \"id\": \"4551686039\", \"username\": \"thedankoe\", \"url\": \"https://www.instagram.com/thedankoe\", \"fullName\": \"DAN KOE\", \"biography\": \"building @edendotso and @drink.sonder\\njoin the next content bootcamp:\", \"externalUrls\": [{\"title\": \"Learn the AI skill in 30 days\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Feden.so%2Fbootcamp&e=AUDbfymP7xGVSBdxEUy8CPzpuXF43Ztk5HjPoqNMhw_ryluj8iHl4Z7BIG227c8DodH_R8w0JTmeJnmJz5VWHIQFKnnQxBfU\", \"url\": \"https://eden.so/bootcamp\", \"link_type\": \"external\"}, {\"title\": \"Read the letters\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fletters.thedankoe.com%2F&e=AUCr7fx81g6vOkUSHfL3UgXISMyuVuKwFSGAoYEuP",
+    "{\"inputUrl\": \"https://www.instagram.com/therichaasingh_\", \"id\": \"80106439620\", \"username\": \"therichaasingh_\", \"url\": \"https://www.instagram.com/therichaasingh_\", \"fullName\": \"Richa Singh\", \"biography\": \"📍Lucknow\\nDaily Content | Motivation😇\\nBrand Collab & PR📩\\n🎥 28k+ Subscribers \\n📩 singhricha2716@gmail.com\", \"externalUrls\": [{\"title\": \"YouTube\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fwww.youtube.com%2F%40Richa__singh53&e=AUCyO7qFdgKuxvCBBJQljbmmk2DQqLcojsrUCJLW9zmAZIopTzcrHq5uIAYN1X5kp0tQlYgIL8jrhj-fbcvui2NEGAN6wXc0\", \"url\": \"https://www.youtube.com/@Richa__singh53\", \"link_type\": \"external\"}], \"externalUrl\": \"https://www.youtube.com/@Richa__singh53\", \"externalUrlShimmed\": \"h"
    ]
   }
  },
@@ -140,8 +140,9 @@
  "telegram": {
   "bot_username": "Paired_tgbot",
   "chat_id": "730601273",
-  "sent": true
+  "sent": true,
+  "messages_sent": 1
  },
  "reels_kept": 13,
- "run_at": "2026-07-13T18:47:56.733948+00:00"
+ "run_at": "2026-07-13T18:56:30.028796+00:00"
 }
