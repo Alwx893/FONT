@@ -123,6 +123,9 @@ HISTORY_RETENTION_DAYS = 30
 SEARCH_ACTOR = os.environ.get(
     "APIFY_SEARCH_ACTOR", "patient_discovery~instagram-search-reels"
 )
+PROFILE_ACTOR = os.environ.get(
+    "APIFY_PROFILE_ACTOR", "apify~instagram-profile-scraper"
+)
 REEL_ACTOR = os.environ.get("APIFY_REEL_ACTOR", "apify~instagram-reel-scraper")
 HASHTAG_ACTOR = os.environ.get("APIFY_ACTOR", "apify~instagram-hashtag-scraper")
 APIFY_BASE = "https://api.apify.com/v2"
@@ -204,32 +207,78 @@ def run_actor(token: str, actor: str, run_input: dict, label: str) -> list[dict]
     return items
 
 
-# Candidate input shapes for the search actor, tried in order until one
-# is accepted; the winner is reused for the remaining queries. Rejected
-# inputs fail at run creation (HTTP 400) before any credits are spent.
+# The exact input field names differ between community actors, so the
+# schema is discovered at runtime: Apify exposes each actor's example
+# input, and we substitute our query into the field the actor itself
+# demonstrates. Guessed variants remain as a fallback.
 SEARCH_INPUT_VARIANTS = (
     lambda q: {"keyword": q, "maxPages": SEARCH_PAGES},
     lambda q: {"query": q, "maxPages": SEARCH_PAGES},
-    lambda q: {"keyword": q},
-    lambda q: {"query": q},
     lambda q: {"search": q},
 )
-_search_variant: int | None = None
+_QUERY_KEY_RE = re.compile(r"(keyword|query|search|term|^q$)", re.I)
+_PAGES_KEY_RE = re.compile(r"^(max_?pages?|pages?)$", re.I)
+_LIMIT_KEY_RE = re.compile(r"^(max_?(items|results)|results?_?limit|limit|count)$", re.I)
+
+
+def resolve_search_template(token: str) -> dict | None:
+    """Fetch the search actor's example run input from Apify metadata."""
+    try:
+        actor = _http_json(f"{APIFY_BASE}/acts/{SEARCH_ACTOR}",
+                           token=token)["data"]
+        body = (actor.get("exampleRunInput") or {}).get("body")
+        template = json.loads(body) if body else None
+    except Exception as exc:  # noqa: BLE001
+        DEBUG["search_template_error"] = str(exc)[:300]
+        return None
+    if not isinstance(template, dict):
+        return None
+    DEBUG["search_input_template"] = template
+    return template
+
+
+def build_search_input(template: dict, query: str) -> dict:
+    run_input = dict(template)
+    query_key = next(
+        (k for k, v in template.items()
+         if isinstance(v, str) and _QUERY_KEY_RE.search(k)),
+        None,
+    ) or next(
+        (k for k, v in template.items()
+         if isinstance(v, str) and not v.startswith("http")),
+        "keyword",
+    )
+    run_input[query_key] = query
+    for key, value in template.items():
+        if isinstance(value, bool) or not isinstance(value, int):
+            continue
+        if _PAGES_KEY_RE.match(key):
+            run_input[key] = SEARCH_PAGES
+        elif _LIMIT_KEY_RE.match(key):
+            run_input[key] = SEARCH_PAGES * 20
+    return run_input
+
+
+_search_template: dict | None = None
+_template_resolved = False
 
 
 def search_reels(token: str, query: str, label: str) -> list[dict]:
-    global _search_variant
-    order = (
-        [_search_variant]
-        if _search_variant is not None
-        else range(len(SEARCH_INPUT_VARIANTS))
-    )
+    global _search_template, _template_resolved
+    if not _template_resolved:
+        _search_template = resolve_search_template(token)
+        _template_resolved = True
+
+    attempts: list[dict] = []
+    if _search_template is not None:
+        attempts.append(build_search_input(_search_template, query))
+    attempts.extend(make(query) for make in SEARCH_INPUT_VARIANTS)
+
     last_err: Exception | None = None
-    for idx in order:
-        run_input = SEARCH_INPUT_VARIANTS[idx](query)
+    for run_input in attempts:
         try:
             items = run_actor(token, SEARCH_ACTOR, run_input, label)
-            _search_variant = idx
+            DEBUG.setdefault("search_inputs_used", {})[label] = run_input
             return items
         except RuntimeError as err:
             last_err = err
@@ -241,17 +290,54 @@ def search_reels(token: str, query: str, label: str) -> list[dict]:
     raise last_err  # all input shapes rejected
 
 
+def enrich_followers(token: str, reels: list[dict]) -> None:
+    """Fill in missing follower counts via the official profile scraper."""
+    missing = sorted({
+        r["author"] for r in reels
+        if r["followers"] is None and r["author"] != "?"
+    })
+    if not missing:
+        return
+    try:
+        items = run_actor(token, PROFILE_ACTOR,
+                          {"usernames": missing}, "profiles")
+    except RuntimeError as err:
+        DEBUG["profile_enrich_error"] = str(err)[:300]
+        return
+    followers_by_user: dict[str, int] = {}
+    for item in items:
+        name = pick(item, "username", "userName")
+        count = pick(item, "followersCount", "follower_count", "followers")
+        if isinstance(count, dict):
+            count = count.get("count")
+        if name and count is not None:
+            followers_by_user[str(name).lower()] = int(count)
+    for reel in reels:
+        if reel["followers"] is None:
+            reel["followers"] = followers_by_user.get(reel["author"].lower())
+
+
 def fetch_posts(token: str) -> list[dict]:
     """Collect candidates: keyword search + optional legacy sources.
 
     Each post gets a `_category` hint from the query that found it.
     """
     posts: list[dict] = []
+    first_ids: set = set()
+    query_count = 0
     for category, queries in SEARCH_QUERIES.items():
         for query in queries:
-            for item in search_reels(token, query, f"search:{query}"):
+            items = search_reels(token, query, f"search:{query}")
+            query_count += 1
+            if items:
+                first_ids.add(str(pick(items[0], "id", "pk", "code")))
+            for item in items:
                 item["_category"] = category
                 posts.append(item)
+    # Identical first results across different queries mean the actor
+    # ignored the query — flag it loudly for debugging.
+    if query_count > 1 and len(first_ids) == 1:
+        DEBUG["search_query_ignored"] = True
 
     if os.environ.get("REELS_USE_WATCHLIST") == "1":
         for item in run_actor(
@@ -427,14 +513,6 @@ def extract_reel(post: dict, now: datetime) -> dict | None:
     if followers is not None:
         followers = int(followers)
 
-    # The whole point: keep only small accounts, where big view counts
-    # mean the algorithm pushed the reel, not the author's own audience.
-    if not post.get("_watchlist"):
-        if followers is None:
-            return _skip("no_followers_data")
-        if followers > MAX_FOLLOWERS:
-            return _skip("too_many_followers")
-
     author = (
         pick(post, "ownerUsername")
         or pick(owner, "username", "handle")
@@ -451,6 +529,7 @@ def extract_reel(post: dict, now: datetime) -> dict | None:
         "category": post.get("_category") or categorize(post),
         "views": views,
         "followers": followers,
+        "watchlist": bool(post.get("_watchlist")),
         "likes": int(pick(post, "likesCount", "like_count", default=0)),
         "comments": int(pick(post, "commentsCount", "comment_count",
                              default=0)),
@@ -726,7 +805,22 @@ def main() -> int:
         if reel:
             reels_by_code.setdefault(reel["shortcode"], reel)
     reels = list(reels_by_code.values())
-    print(f"{len(reels)} fresh English reels after filtering")
+    enrich_followers(token, reels)
+
+    # The whole point: keep only small accounts, where big view counts
+    # mean the algorithm pushed the reel, not the author's own audience.
+    kept = []
+    for reel in reels:
+        if reel["watchlist"] or (
+            reel["followers"] is not None
+            and reel["followers"] <= MAX_FOLLOWERS
+        ):
+            kept.append(reel)
+        else:
+            _skip("no_followers_data" if reel["followers"] is None
+                  else "too_many_followers")
+    reels = kept
+    print(f"{len(reels)} fresh English small-account reels after filtering")
 
     history = load_history()
     update_history(history, reels, now)
