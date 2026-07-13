@@ -108,7 +108,7 @@ HASHTAGS = [
 MAX_AGE_DAYS = int(os.environ.get("REELS_MAX_AGE_DAYS", "7"))
 # Authors with more followers than this are dropped: their millions of
 # views come from subscribers, not from the algorithm going viral.
-MAX_FOLLOWERS = int(os.environ.get("REELS_MAX_FOLLOWERS", "100000"))
+MAX_FOLLOWERS = int(os.environ.get("REELS_MAX_FOLLOWERS", "1000000"))
 # Search depth per query (pages of search results).
 SEARCH_PAGES = int(os.environ.get("REELS_SEARCH_PAGES", "2"))
 # Reels fetched per watched account (affects credit usage — see README).
@@ -725,7 +725,8 @@ def fmt_followers(reel: dict) -> str:
     return fmt_views(reel["followers"]) if reel.get("followers") else "?"
 
 
-def build_report(viral: list[dict], rising: list[dict], now: datetime) -> str:
+def build_report(viral: list[dict], rising: list[dict],
+                 fresh: list[dict], now: datetime) -> str:
     date_str = now.strftime("%d.%m.%Y")
     lines = [
         f"# 🎬 Утренний отчёт по Instagram Reels — {date_str}",
@@ -782,6 +783,29 @@ def build_report(viral: list[dict], rising: list[dict], now: datetime) -> str:
             )
     else:
         lines.append("_Кандидатов не найдено._")
+
+    lines += [
+        "",
+        f"## 🌱 Новые кандидаты в трекинге — {len(fresh)} шт.",
+        "",
+        "Свежие ролики малых каналов, за которыми агент следит ежедневно —",
+        "если начнут разгоняться, попадут в разделы выше с замеренной скоростью.",
+        "",
+    ]
+    if fresh:
+        lines += [
+            "| # | Тема | Просмотры | Подписчики | ×аудитория | В час | Возраст | Автор | Ролик |",
+            "|---|------|-----------|------------|------------|-------|---------|-------|-------|",
+        ]
+        for i, r in enumerate(fresh[:10], 1):
+            lines.append(
+                f"| {i} | {CATEGORY_LABELS[r['category']]} | {fmt_views(r['views'])} "
+                f"| {fmt_followers(r)} | {fmt_multiplier(r)} "
+                f"| {fmt_views(r['vph'])} | {fmt_hours(r['age_hours'])} "
+                f"| @{r['author']} | [{snippet(r['caption'], 45) or r['shortcode']}]({r['url']}) |"
+            )
+    else:
+        lines.append("_Пока пусто — кандидаты появятся по мере сбора._")
 
     lines += [
         "",
@@ -925,18 +949,29 @@ def main() -> int:
 
     update_history(history, reels, now)
 
-    viral, rising = [], []
+    viral, rising, fresh = [], [], []
     for reel in reels:
         ttm = hours_to_million(reel, history)
+        outperform = (
+            reel["followers"] and reel["views"] >= 5 * reel["followers"]
+        )
         if ttm is not None:
             reel["ttm"], reel["measured"] = ttm
             viral.append(reel)
-        elif reel["views"] >= RISING_MIN_VIEWS and reel["vph"] >= RISING_MIN_VPH:
+        elif reel["views"] >= RISING_MIN_VIEWS and (
+            reel["vph"] >= RISING_MIN_VPH or outperform
+        ):
             rising.append(reel)
+        else:
+            fresh.append(reel)
     viral.sort(key=lambda r: r["ttm"])
     rising.sort(key=lambda r: r["vph"], reverse=True)
+    fresh.sort(
+        key=lambda r: r["views"] / max(r["followers"] or 10**9, 1),
+        reverse=True,
+    )
 
-    report = build_report(viral, rising, now)
+    report = build_report(viral, rising, fresh, now)
     REPORTS_DIR.mkdir(exist_ok=True)
     DATA_DIR.mkdir(exist_ok=True)
     report_path = REPORTS_DIR / f"{now.strftime('%Y-%m-%d')}.md"
