@@ -1,17 +1,23 @@
 {
  "filters": {
-  "not_video": 130
+  "not_video": 2,
+  "no_timestamp_or_too_old": 66
  },
- "apify_run_id": "AJW9x5zk7PgrwQP3h",
- "items_count": 130,
- "item_samples": [
-  "{\"inputUrl\": \"https://www.instagram.com/explore/tags/readmorebooks\", \"id\": \"3940107536942606432\", \"type\": \"Image\", \"shortCode\": \"DauEu3kTahg\", \"caption\": \"Visiting family has it's perks 😂 I'll have to show the full haul when I get home at the end of the month!. Suitcase weight 47.6 pounds!\\n\\n#bookhaul #bookdragon #vacation #readmorebooks #bookstagram\", \"hashtags\": [\"bookhaul\", \"bookdragon\", \"vacation\", \"readmorebooks\", \"bookstagram\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DauEu3kTahg/\", \"commentsCount\": 0, \"firstComment\": \"\", \"latestComments\": [], \"dimensionsHeight\": 1080, \"dimensionsWidth\": 1080, \"displayUrl\": \"https://scontent-cph2-1.cdninstagram.com/v/t51.82787-15/745010730",
-  "{\"inputUrl\": \"https://www.instagram.com/explore/tags/readmorebooks\", \"id\": \"3940097848893555154\", \"type\": \"Sidecar\", \"shortCode\": \"DauCh43lMHS\", \"caption\": \"Taste is all over the place 😅\\n•\\n•\\n•\\n•\\n•\\n•\\n•\\n•\\n•\\n#dontcare #bookstagram #bookish #reading #readmorebooks\", \"hashtags\": [\"dontcare\", \"bookstagram\", \"bookish\", \"reading\", \"readmorebooks\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DauCh43lMHS/\", \"commentsCount\": 1, \"firstComment\": \"\", \"latestComments\": [], \"dimensionsHeight\": 1350, \"dimensionsWidth\": 1080, \"displayUrl\": \"https://scontent-cph2-1.cdninstagram.com/v/t51.82787-15/746261189_18055091840769502_6574003251478729823_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_k"
- ],
- "posts_after_flatten": 130,
+ "apify": {
+  "reels": {
+   "run_id": "p2d2CBD9C4my17ZLk",
+   "items_count": 112,
+   "item_samples": [
+    "{\"url\": \"https://www.instagram.com/alexhormozi\", \"inputUrl\": \"https://www.instagram.com/alexhormozi\", \"requestErrorMessages\": [], \"error\": \"no_items\", \"errorDescription\": \"Empty or private data for provided input\"}",
+    "{\"id\": \"3939071068049437515\", \"type\": \"Video\", \"shortCode\": \"DaqZEQsGvNL\", \"caption\": \"training camp arc iykyk\", \"hashtags\": [], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DaqZEQsGvNL/\", \"commentsCount\": 15, \"dimensionsHeight\": 1920, \"dimensionsWidth\": 1080, \"images\": [\"https://scontent-sjc3-1.cdninstagram.com/v/t51.82787-15/744994930_18598696657048091_8041763895071326661_n.jpg?stp=dst-jpg_e35_p828x828_sh2.08_tt6&_nc_cat=110&ig_cache_key=MzkzOTA3MTA2ODA0OTQzNzUxNTE4NTk4Njk2NjU0MDQ4MDkx.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjEwODAuc2RyLnZpZGVvX2RlZmF1bHRfY292ZXJfZnJhbWUuQzMifQ%3D%3D&_nc_ohc=lGOXA6_0z7EQ7kNvwFhw8wI&_nc_oc=AdraXuspxX4m7EFWKQcyNr1edIoa"
+   ]
+  }
+ },
+ "posts_total": 112,
  "telegram": {
+  "bot_username": "Paired_tgbot",
   "updates_count": 0
  },
- "reels_kept": 0,
- "run_at": "2026-07-13T04:53:23.952346+00:00"
+ "reels_kept": 44,
+ "run_at": "2026-07-13T05:00:17.063517+00:00"
 }
