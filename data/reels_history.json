@@ -357,15 +357,6 @@
    ]
   ]
  },
- "DadDlbfGqYY": {
-  "post_ts": "2026-07-06T14:01:12+00:00",
-  "snapshots": [
-   [
-    "2026-07-13T05:00:17.063517+00:00",
-    22806
-   ]
-  ]
- },
  "DalRh36jmbc": {
   "post_ts": "2026-07-09T18:36:25+00:00",
   "snapshots": [
@@ -663,5 +654,29 @@
   "category": "success",
   "author": "itsemmaeve",
   "followers": 65901
+ },
+ "Dbi2KCRxTjx": {
+  "post_ts": "2026-08-02T16:31:17+00:00",
+  "snapshots": [
+   [
+    "2026-08-06T06:16:22.047747+00:00",
+    8529083
+   ]
+  ],
+  "category": "books",
+  "author": "kays.bookish.corner",
+  "followers": 7481
+ },
+ "DbkPSMPo4Ey": {
+  "post_ts": "2026-08-03T05:29:24+00:00",
+  "snapshots": [
+   [
+    "2026-08-06T06:16:22.047747+00:00",
+    469084
+   ]
+  ],
+  "category": "success",
+  "author": "_realistic_sketches",
+  "followers": 20419
  }
 }
