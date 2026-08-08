@@ -1,7 +1,8 @@
 {
  "filters": {
-  "no_timestamp_or_too_old": 171,
-  "too_many_followers": 3
+  "no_timestamp_or_too_old": 187,
+  "not_english": 1,
+  "too_many_followers": 1
  },
  "search_schema_keys": {
   "query": "string",
@@ -13,31 +14,31 @@
  },
  "apify": {
   "search:book recommendations": {
-   "run_id": "6IoVharRfsydQtuAR",
-   "items_count": 21,
+   "run_id": "OCH6WWIRiEv9b7g52",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779020157, \"created_at_utc\": 1779020157, \"did_report_as_spam\": false, \"hashtags\": [\"#bookrecs\", \"#hefallsfirst\", \"#bookgirlies\", \"#romancebookrecs\", \"#fyp\"], \"id\": \"3899025900771546046\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"20 books that I couldn’t put down once I started💌\\n\\nWhich ones have you read, and which are still in your tbr? \\n\\n#bookrecs #hefallsfirst #bookgirlies #rom",
-    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 158, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1765836533, \"created_at_utc\": 1765836533, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3788424975988323687\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"sometimes I judge very popular books too quickly without having read them and many times they end up surprising me in a good way 😇 Has it happened to you with some? 📚🤎\\n\\n[ my favorite books , book "
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1774881768, \"created_at_utc\": 1774881768, \"did_report_as_spam\": false, \"hashtags\": [\"#fantasyromancebooks\", \"#romancebookrecs\", \"#bookrecommendations\", \"#romancebooks\", \"#romancereadersofinstagram\"], \"id\": \"3864309344884716799\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@marionblackwood\", \"@kiacarringtonrussell\", \"@author.ruby.dixon\", \"@laynefargo\", \"@penelope.douglas\", \"@kennedyryan1\", \"@authorbkborison\", \"@sablesorensen\", \"@staciastarkauthor\"]",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1781929419, \"created_at_utc\": 1781929419, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3923430132685285737\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Banned classics are books that have faced restrictions or censorship despite being recognized as important works of literature. These books are often challenged because of their themes, language, political ideas, or social critic"
    ]
   },
   "search:books that changed my life": {
-   "run_id": "adGSqfOQwR0vy6UXH",
+   "run_id": "pxHDktQPfbVYrfo7i",
    "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 336, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779321427, \"created_at_utc\": 1779321427, \"did_report_as_spam\": false, \"hashtags\": [\"#books\", \"#bookstagram\", \"#bookrecs\", \"#bookish\", \"#booksbooksbooks\"], \"id\": \"3901550094226784314\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@hilarieburton\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Laughter, tears, and Dandelion Wine with @hilarieburton.\\n\\nClearly, there’s something about this book that bring",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1769030086, \"created_at_utc\": 1769030086, \"did_report_as_spam\": false, \"hashtags\": [\"#books\", \"#selfimprovement\"], \"id\": \"3815222603799394032\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"3 books you need to read to help become your best and most successful self in 2026 🫡\\n\\n#books #selfimprovement\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841466973000874\", \"full_name\": \"Leo Gibson\", \"id\": \"6"
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 347, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1776897822, \"created_at_utc\": 1776897822, \"did_report_as_spam\": false, \"hashtags\": [\"#selfimprovement\", \"#mindset\", \"#character\", \"#psychology\", \"#philosophy\"], \"id\": \"3881221155898440904\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Here are a few books that changed my life. \\n\\nRanging from Stoicism, Logo-therapy, Psychology, The Ubermensch, and Absurdis",
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 336, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779321427, \"created_at_utc\": 1779321427, \"did_report_as_spam\": false, \"hashtags\": [\"#books\", \"#bookstagram\", \"#bookrecs\", \"#bookish\", \"#booksbooksbooks\"], \"id\": \"3901550094226784314\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@hilarieburton\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Laughter, tears, and Dandelion Wine with @hilarieburton.\\n\\nClearly, there’s something about this book that bring"
    ]
   },
   "search:booktok": {
-   "run_id": "fvkheG7g5CQUfrXuw",
-   "items_count": 12,
+   "run_id": "b3xec5c818QchIOxZ",
+   "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1781976153, \"created_at_utc\": 1781976153, \"did_report_as_spam\": false, \"hashtags\": [\"#ghostface\", \"#darkromance\", \"#booktok\"], \"id\": \"3923822198555139274\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@hyoga.x\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Booktok girls be Like💝 #ghostface #darkromance #booktok @hyoga.x 🌹\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841456186246597\", \"full_name\": \"Mr. Sam\", \"id\": \"56372776874\", \"is_private\":",
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1785033114, \"created_at_utc\": 1785033114, \"did_report_as_spam\": false, \"hashtags\": [\"#BookTok\", \"#shatterme\", \"#shattermeseries\", \"#aaronwarner\"], \"id\": \"3949466417764789838\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"I actually need a second I’m traumatized. \\n\\n#BookTok #shatterme #shattermeseries #aaronwarner\", \"text_translation\": \"I actually need a second I’m traumatized. \\n\\n #Bo"
    ]
   },
   "search:self improvement": {
-   "run_id": "yt2Fwpzc4HmE1jBrB",
+   "run_id": "2CiJFWkfxoxmiD0k4",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1706888591, \"created_at_utc\": 1706888591, \"did_report_as_spam\": false, \"hashtags\": [\"#cars\", \"#money\", \"#success\", \"#selfimprovement\", \"#selfgrowth\", \"#motivation\", \"#discipline\", \"#lifestyle\", \"#explore\", \"#explorepage✨\", \"#fyp\", \"#mindset\", \"#mindsetcoach\"], \"id\": \"3293942584039626924\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"↓ How to be unrecognisable in 3 months:\\n\\n1️⃣ Waking u",
@@ -45,7 +46,7 @@
    ]
   },
   "search:success mindset": {
-   "run_id": "sT3vWwgYADCymKTNG",
+   "run_id": "c3VMC9yFDzeaTM7DN",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779629798, \"created_at_utc\": 1779629798, \"did_report_as_spam\": false, \"hashtags\": [\"#JackMa\", \"#Motivation\", \"#SuccessMindset\", \"#NeverGiveUp\", \"#discipline\"], \"id\": \"3904139927738694878\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@onsidianmen\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Jack Ma was born on September 10, 1964, in China. He is a businessman, entrepreneur, and the founder of Alibaba Group. Today, he is known as ",
@@ -53,40 +54,48 @@
    ]
   },
   "search:morning routine": {
-   "run_id": "cJ93d0vhD3TheSZOe",
+   "run_id": "RrPvrktpk9pmOB5rc",
    "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1773749396, \"created_at_utc\": 1773749396, \"did_report_as_spam\": false, \"hashtags\": [\"#morningroutine\", \"#5amclub\", \"#productivemorning\", \"#morningvlog\", \"#healthyhabits\"], \"id\": \"3854811662277071310\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"5am morning vlog productive wfh edition 💻👟☕️ \\n\\n#morningroutine #5amclub #productivemorning #morningvlog #healthyhabits\", \"text_translation\": \"",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1771177146, \"created_at_utc\": 1771177146, \"did_report_as_spam\": false, \"hashtags\": [\"#Wakeupearly\", \"#5amclub\", \"#morningroutine\", \"#TheSelfHelpPlanner\"], \"id\": \"3833233950642860961\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Comment \\\"MORING\\\" to get my morning routine course that shows you how to become a morning person.\\n\\n#Wakeupearly #5amclub #morningroutine #TheSelfHelpPlanner\","
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1770665959, \"created_at_utc\": 1770665959, \"did_report_as_spam\": false, \"hashtags\": [\"#morningroutine\", \"#morningroutineaesthetic\", \"#productivemorningroutine\", \"#morningvlog\"], \"id\": \"3828945940078224688\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"happy monday!! 🤍🧸\\n\\n#morningroutine #morningroutineaesthetic #productivemorningroutine #morningvlog\", \"type\": 1, \"user\": {\"fbid_v2\": \"1784",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1778668003, \"created_at_utc\": 1778668003, \"did_report_as_spam\": false, \"hashtags\": [\"#morningroutine\", \"#asmr\", \"#asmrmorningroutine\", \"#mymorning\"], \"id\": \"3896071037193998370\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Another #morningroutine because you guys loved the last one🙂‍↔️#asmr #asmrmorningroutine #mymorning\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841407166359712\", \"full_name\":"
    ]
   },
   "search:entrepreneur motivation": {
-   "run_id": "44khuRbo6Q0zrhje8",
+   "run_id": "6sgw66jSZesSgDAks",
    "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1771859171, \"created_at_utc\": 1771859171, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3838955163180979884\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Entrepreneurship isn’t sexy. It’s lonely. It’s brutal. It’s misunderstood.\\n \\nAnd then one day… You’ll get respected. Most people quit before that day. Will you?\", \"text_translation\": \"Entrepreneurship isn’t sexy. It’s lonely. I",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1743676205, \"created_at_utc\": 1743676205, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3602539920084407131\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"A true entrepreneur would rather work 24/7 on their own thing for half the pay than clock in 9 to 5 making more for someone else.\\n\\nIt’s not about the hours or the money—it’s about the ownership. The freedom. The chance to build"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1755740436, \"created_at_utc\": 1755740436, \"did_report_as_spam\": false, \"hashtags\": [\"#motivational\", \"#successmindset\", \"#success\", \"#motivation\", \"#entrepreneur\"], \"id\": \"3703741234038132434\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"True \\n.\\n.\\n.\\n. motivation mindset \\n#motivational #successmindset #success #motivation #entrepreneur\", \"type\": 1, \"user\": {\"fbid_v2\": \"1784146783615",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1760616006, \"created_at_utc\": 1760616006, \"did_report_as_spam\": false, \"hashtags\": [\"#amangupta\", \"#savage\", \"#hindi\", \"#indianentrepreneur\", \"#entrepreneurmotivation\", \"#entrepreneurmindset\"], \"id\": \"3744641036535492608\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"You don't need to have a perfect english communication skill to be an entrepreneur says boat CEO Aman Gupta.\\n.\\n.\\n.\\n#am"
    ]
   },
   "search:how to start a business": {
-   "run_id": "WPoEXRKDposkuN3ol",
+   "run_id": "whTC1HgIweidd4t3m",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 372, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1775382828, \"created_at_utc\": 1775382828, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3826017777430129023\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"You need to know these 5 points before you start your business 💡 \\n1.  ROI\\n2. Cash flow \\n3. CAC & LTV\\n4. Break even \\n5. The cost of your time\\n\\nUPDATE! Since this went super viral, I’ve made a ",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": false, \"can_save\": true, \"caption\": {\"created_at\": 1785013870, \"created_at_utc\": 1785013870, \"did_report_as_spam\": false, \"hashtags\": [\"#startyourbusiness\", \"#entrepreneurship\", \"#businessideas\", \"#howtostartabusiness\"], \"id\": \"3949303790276225372\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"People ask me all the time what business they should start. Most of them are looking for something complicated. Thinking complexity means more mo"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reply\": false, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1779257727, \"created_at_utc\": 1779257727, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3901017000695918456\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"follow these 5 steps (and you’re good to go)\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841401908664081\", \"full_name\": \"Bryan Low\", \"id\": \"261247622\", \"is_private\": false, \"is_unpublished\": false, \"is_verified\": true, \"profile_pic_id\": "
    ]
   },
   "search:make money online": {
-   "run_id": "BbRrGnX8TvVbaodqi",
+   "run_id": "g7lpxI4rGlqnB6Noh",
    "items_count": 0,
    "item_samples": []
   },
-  "profiles": {
-   "run_id": "PC0Fgnob242tLII2a",
-   "items_count": 6,
+  "tracked": {
+   "run_id": "M2UYtrcdHq3Ejpk5I",
+   "items_count": 2,
    "item_samples": [
-    "{\"inputUrl\": \"https://www.instagram.com/belmarlearning\", \"id\": \"72011579343\", \"username\": \"belmarlearning\", \"url\": \"https://www.instagram.com/belmarlearning\", \"fullName\": \"Luke Belmar Learning\", \"biography\": \"They can't silence the truth.\\nMotivation | Datasets | Entrepreneurship\", \"externalUrls\": [{\"title\": \"\", \"lynx_url\": \"https://l.instagram.com/?u=http%3A%2F%2Fecomsociety.co%2F&e=AUADlMgkQ2Sxn42bC9tTEZE8QsEHx5YWjs9jPUDUFJMBSANkzwGSBZVGVC-NYUxjHAgdq8Rgw3_ioNFYliQRWShc92L3wyu43wG8jwexyPrw1tqZ\", \"url\": \"http://ecomsociety.co\", \"link_type\": \"external\"}], \"externalUrl\": \"http://ecomsociety.co/\", \"externalUrlShimmed\": \"https://l.instagram.com/?u=http%3A%2F%2Fecomsociety.co%2F&e=AUBpMSjBlRzyUXf",
-    "{\"inputUrl\": \"https://www.instagram.com/casper.capital\", \"id\": \"35407363852\", \"username\": \"casper.capital\", \"url\": \"https://www.instagram.com/casper.capital\", \"fullName\": \"Casper Opala | Personal Finance\", \"biography\": \"📈 | Top Personal Finance Creator\\n📱 | 11M+ Followers Across Platforms\\n📩  | partnerships@caspercapital.co\\n👇 Check out Ownup!👇\", \"externalUrls\": [{\"title\": \"\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fwww.ownup.com%2F%3Futm_source%3Dinstagram%26utm_medium%3Dcreator%26utm_campaign%3Dcaper%26utm_content%3Dfuture-you&e=AUCxycSY-pHwBrJE0eNRCcjjZ3IAdj0UE4mEPX-uAm5aMIAz0z6D_UwgEZqlZAM75kqmzfLmRwc2Gq8B6uuBctwT_dDwXsKu\", \"url\": \"https://www.ownup.com/?utm_source=instagra"
+    "{\"inputUrl\": \"https://www.instagram.com/reel/DbkPSMPo4Ey/\", \"id\": \"3955353593533661490\", \"type\": \"Video\", \"shortCode\": \"DbkPSMPo4Ey\", \"caption\": \"They Pull You Down… But You Still Climb 💪🔥\\n\\n#NeverGiveUp\\n#SuccessMindset\\n#StayStrong\\n#RealityCheck\\n#RealisticSketches\\n\\nsuccess struggle\\npeople pulling down\\nlife challenges\\nclimbing success\\nmotivation mindset\\nhard work journey\\novercoming obstacles\\nmental strength\\nself discipline\\nfocus and growth\", \"hashtags\": [\"NeverGiveUp\", \"SuccessMindset\", \"StayStrong\", \"RealityCheck\", \"RealisticSketches\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DbkPSMPo4Ey/\", \"commentsCount\": 105, \"firstComment\": \"100%\", \"latestComments\": [{\"id\": \"1",
+    "{\"inputUrl\": \"https://www.instagram.com/reel/DbfnGqcxMlZ/\", \"id\": \"3954050979565193561\", \"type\": \"Video\", \"shortCode\": \"DbfnGqcxMlZ\", \"caption\": \"The payment for success\\n•\\n•\\n•\\n#success #motivation #mindset #goals #personaldevelopment\", \"hashtags\": [\"success\", \"motivation\", \"mindset\", \"goals\", \"personaldevelopment\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DbfnGqcxMlZ/\", \"commentsCount\": 48, \"firstComment\": \"Glad am paying the price, trusting the process even with empty bank account, loneliness..🙌🙌🙌🙌 and I promise to see it through the end\", \"latestComments\": [{\"id\": \"18111716009052934\", \"text\": \"Glad am paying the price, trusting the process even with empty bank account, lone"
+   ]
+  },
+  "profiles": {
+   "run_id": "IltCmV3S70tkOPem0",
+   "items_count": 3,
+   "item_samples": [
+    "{\"inputUrl\": \"https://www.instagram.com/ux_deniza\", \"id\": \"46163087226\", \"username\": \"ux_deniza\", \"url\": \"https://www.instagram.com/ux_deniza\", \"fullName\": \"Deniza\", \"biography\": \"✧ in bangkok \\n✧ your fav tech & wellness girl \\n✧ for collabs: dyniza@uxdyniza.com\\n💌 letters from future app ↓\", \"externalUrls\": [{\"image_url\": \"\", \"is_pinned\": false, \"link_type\": \"external\", \"lynx_url\": \"https://l.instagram.com/?u=http%3A%2F%2Fzaap.bio%2Fdeniza&e=AUCqx6Rgn0UNh9GHI0ep4w0RnrlrVHCRcyGLHLVnMy2v8Dn46qUK4LOCBhz8ajqDURkGpZ3JPR_9xZe0p1EA6Uha_AvAyKkBiDnb6klZDyaQ1VfoadRTlT2iSGTEvOP46Q4nqDFoMQSCbgM2LHgWaC_CVxKiihW49vXAsw\", \"media_accent_color_hex\": \"\", \"media_type\": \"none\", \"title\": \"App/Course/Templates\"",
+    "{\"inputUrl\": \"https://www.instagram.com/rajshamani\", \"id\": \"267892508\", \"username\": \"rajshamani\", \"url\": \"https://www.instagram.com/rajshamani\", \"fullName\": \"Raj Shamani\", \"biography\": \"Purpose: To help people live & love better ✨\\nPodcast Host: @figuringout.co 🇮🇳\\nI study the science of winning in modern world.\", \"externalUrls\": [{\"title\": \"Figuring Out\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fwww.figuringout.co%2Flink%2Ffo-545&e=AUACJg-cqaO9EhMcb7-w-CS4xqd0xIs2_FMP8WDnlOaZaZ8kfbApiA3wCju2HsaBfKJQMz803AfQwpuKJUHZ90yTXdtgnfQ_A0kfQPYklIgEV7-o\", \"url\": \"https://www.figuringout.co/link/fo-545\", \"link_type\": \"external\"}], \"externalUrl\": \"https://www.figuringout.co/link/fo-545\", \"e"
    ]
   }
  },
@@ -128,13 +137,13 @@
    "maxPages": 2
   }
  },
- "posts_total": 177,
+ "posts_total": 192,
  "telegram": {
   "bot_username": "Paired_tgbot",
   "chat_id": "730601273",
   "sent": true,
   "messages_sent": 1
  },
- "reels_kept": 3,
- "run_at": "2026-08-07T05:24:47.381178+00:00"
+ "reels_kept": 4,
+ "run_at": "2026-08-08T04:40:07.874420+00:00"
 }
