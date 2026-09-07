@@ -1,48 +1,4 @@
 {
- "Dbvg9H_R3qm": {
-  "post_ts": "2026-08-07T14:36:16+00:00",
-  "snapshots": [
-   [
-    "2026-08-09T04:50:44.598149+00:00",
-    445394
-   ],
-   [
-    "2026-08-10T05:09:35.985020+00:00",
-    842839
-   ],
-   [
-    "2026-08-11T04:53:55.943410+00:00",
-    944444
-   ],
-   [
-    "2026-08-12T05:18:52.201052+00:00",
-    1005730
-   ],
-   [
-    "2026-08-13T05:22:42.853249+00:00",
-    1062366
-   ],
-   [
-    "2026-08-14T05:19:28.532099+00:00",
-    1114584
-   ]
-  ],
-  "category": "books",
-  "author": "_joshreadsbooks",
-  "followers": 168387
- },
- "DbvOa-YM-u1": {
-  "post_ts": "2026-08-07T11:55:09+00:00",
-  "snapshots": [
-   [
-    "2026-08-10T05:09:35.985020+00:00",
-    4058
-   ]
-  ],
-  "category": "books",
-  "author": "lumena_ckipszz___1",
-  "followers": 10642
- },
  "DbyDz1avZ_0": {
   "post_ts": "2026-08-08T14:18:52+00:00",
   "snapshots": [
@@ -103,22 +59,6 @@
   "author": "_noleyyy_",
   "followers": 56216
  },
- "Dbv6-tQx4hz": {
-  "post_ts": "2026-08-07T18:22:29+00:00",
-  "snapshots": [
-   [
-    "2026-08-13T05:22:42.853249+00:00",
-    1140277
-   ],
-   [
-    "2026-08-14T05:19:28.532099+00:00",
-    1162093
-   ]
-  ],
-  "category": "books",
-  "author": "bookishwithmarie",
-  "followers": 8581
- },
  "Db2usmwICAd": {
   "post_ts": "2026-08-10T09:50:20+00:00",
   "snapshots": [
@@ -135,40 +75,16 @@
   "author": "kojiwaa",
   "followers": 19981
  },
- "Dbwys8OSoRQ": {
-  "post_ts": "2026-08-08T02:30:16+00:00",
-  "snapshots": [
-   [
-    "2026-08-13T05:22:42.853249+00:00",
-    213228
-   ],
-   [
-    "2026-08-14T05:19:28.532099+00:00",
-    223845
-   ]
-  ],
-  "category": "entrepreneurship",
-  "author": "astrixis",
-  "followers": 36119
- },
- "Dbu21LBzLBr": {
-  "post_ts": "2026-08-07T08:28:02+00:00",
-  "snapshots": [
-   [
-    "2026-08-14T05:19:28.532099+00:00",
-    587385
-   ]
-  ],
-  "category": "entrepreneurship",
-  "author": "bhavyasharmaai",
-  "followers": 184384
- },
  "DcvMzV1shYD": {
   "post_ts": "2026-09-01T08:10:56+00:00",
   "snapshots": [
    [
     "2026-09-06T08:08:05.107090+00:00",
     3904479
+   ],
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    4439818
    ]
   ],
   "category": "success",
@@ -181,11 +97,15 @@
    [
     "2026-09-06T08:08:05.107090+00:00",
     551429
+   ],
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    892512
    ]
   ],
   "category": "success",
   "author": "danemcbeth",
-  "followers": 358688
+  "followers": 360699
  },
  "Dc1b5JkRvTL": {
   "post_ts": "2026-09-03T18:18:10+00:00",
@@ -193,6 +113,10 @@
    [
     "2026-09-06T08:08:05.107090+00:00",
     243043
+   ],
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    245948
    ]
   ],
   "category": "success",
@@ -205,6 +129,10 @@
    [
     "2026-09-06T08:08:05.107090+00:00",
     138625
+   ],
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    150455
    ]
   ],
   "category": "success",
@@ -217,11 +145,15 @@
    [
     "2026-09-06T08:08:05.107090+00:00",
     792265
+   ],
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    865411
    ]
   ],
   "category": "entrepreneurship",
   "author": "lanadoinglife",
-  "followers": 55191
+  "followers": 55536
  },
  "Dc4gbR6BkkT": {
   "post_ts": "2026-09-04T22:55:05+00:00",
@@ -229,10 +161,74 @@
    [
     "2026-09-06T08:08:05.107090+00:00",
     56382
+   ],
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    64767
    ]
   ],
   "category": "entrepreneurship",
   "author": "earningwkae",
   "followers": 1437
+ },
+ "Dcy6iD8xAjW": {
+  "post_ts": "2026-09-02T18:50:51+00:00",
+  "snapshots": [
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    1664819
+   ]
+  ],
+  "category": "books",
+  "author": "jamiebowenwrites",
+  "followers": 971
+ },
+ "DcwAhORzvBi": {
+  "post_ts": "2026-09-01T15:43:25+00:00",
+  "snapshots": [
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    1579417
+   ]
+  ],
+  "category": "success",
+  "author": "figuringout.vp",
+  "followers": 3039
+ },
+ "Dc05weIx1Hk": {
+  "post_ts": "2026-09-03T13:20:02+00:00",
+  "snapshots": [
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    3301069
+   ]
+  ],
+  "category": "success",
+  "author": "explorewithdasom",
+  "followers": 222591
+ },
+ "DcwzU9dvjX3": {
+  "post_ts": "2026-09-01T23:07:16+00:00",
+  "snapshots": [
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    109532
+   ]
+  ],
+  "category": "entrepreneurship",
+  "author": "virtuososnetwork",
+  "followers": 58337
+ },
+ "Dcy2h-QqLP4": {
+  "post_ts": "2026-09-02T18:21:14+00:00",
+  "snapshots": [
+   [
+    "2026-09-07T08:38:41.844664+00:00",
+    1908206
+   ]
+  ],
+  "category": "entrepreneurship",
+  "author": "bryanscalesai",
+  "followers": 5088
  }
 }
