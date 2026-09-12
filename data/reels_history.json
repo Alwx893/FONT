@@ -1,36 +1,4 @@
 {
- "Db8rpegwsAW": {
-  "post_ts": "2026-08-12T17:18:58+00:00",
-  "snapshots": [
-   [
-    "2026-08-13T05:22:42.853249+00:00",
-    202154
-   ],
-   [
-    "2026-08-14T05:19:28.532099+00:00",
-    337255
-   ]
-  ],
-  "category": "books",
-  "author": "monicagartner",
-  "followers": 765256
- },
- "Db9Oql2Iiqv": {
-  "post_ts": "2026-08-12T22:28:04+00:00",
-  "snapshots": [
-   [
-    "2026-08-13T05:22:42.853249+00:00",
-    10652
-   ],
-   [
-    "2026-08-14T05:19:28.532099+00:00",
-    30868
-   ]
-  ],
-  "category": "books",
-  "author": "_noleyyy_",
-  "followers": 56216
- },
  "DcvMzV1shYD": {
   "post_ts": "2026-09-01T08:10:56+00:00",
   "snapshots": [
@@ -313,6 +281,10 @@
    [
     "2026-09-11T08:19:35.609988+00:00",
     75929
+   ],
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    78499
    ]
   ],
   "category": "books",
@@ -333,11 +305,15 @@
    [
     "2026-09-11T08:19:35.609988+00:00",
     385210
+   ],
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    402760
    ]
   ],
   "category": "books",
   "author": "aliradfordd",
-  "followers": 269100
+  "followers": 270430
  },
  "Dc7ZXn-Km8u": {
   "post_ts": "2026-09-06T01:51:11+00:00",
@@ -353,6 +329,10 @@
    [
     "2026-09-11T08:19:35.609988+00:00",
     1129489
+   ],
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    1199289
    ]
   ],
   "category": "books",
@@ -373,6 +353,10 @@
    [
     "2026-09-11T08:19:35.609988+00:00",
     3397880
+   ],
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    3509610
    ]
   ],
   "category": "success",
@@ -426,5 +410,89 @@
   "category": "books",
   "author": "myhappinesz",
   "followers": 601416
+ },
+ "Dc888GfoMsh": {
+  "post_ts": "2026-09-06T16:24:06+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    53516
+   ]
+  ],
+  "category": "books",
+  "author": "delaneylynne_",
+  "followers": 57245
+ },
+ "DdH0muCzjG-": {
+  "post_ts": "2026-09-10T21:41:29+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    341997
+   ]
+  ],
+  "category": "books",
+  "author": "mariannasreads",
+  "followers": 276312
+ },
+ "Dc_7svjJrRH": {
+  "post_ts": "2026-09-07T20:17:49+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    397546
+   ]
+  ],
+  "category": "books",
+  "author": "linaforrestal",
+  "followers": 58856
+ },
+ "Dc7tVmZAsL3": {
+  "post_ts": "2026-09-06T04:45:25+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    2382858
+   ]
+  ],
+  "category": "books",
+  "author": "dreamora.usa",
+  "followers": 12576
+ },
+ "Dc9T4bjBMNi": {
+  "post_ts": "2026-09-06T19:42:01+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    158108
+   ]
+  ],
+  "category": "books",
+  "author": "eduarda.reads",
+  "followers": 58523
+ },
+ "DdE1K2YIxzS": {
+  "post_ts": "2026-09-09T17:45:55+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    160273
+   ]
+  ],
+  "category": "success",
+  "author": "hashmani_growth",
+  "followers": 6668
+ },
+ "DdB9mE6SPA1": {
+  "post_ts": "2026-09-08T15:07:15+00:00",
+  "snapshots": [
+   [
+    "2026-09-12T08:08:38.300778+00:00",
+    519039
+   ]
+  ],
+  "category": "entrepreneurship",
+  "author": "manishgupta_chrysalis",
+  "followers": 221605
  }
 }
