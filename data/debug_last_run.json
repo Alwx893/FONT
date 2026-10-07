@@ -1,7 +1,7 @@
 {
  "filters": {
-  "not_english": 1,
-  "no_timestamp_or_too_old": 165
+  "no_timestamp_or_too_old": 129,
+  "not_english": 1
  },
  "search_schema_keys": {
   "query": "string",
@@ -13,63 +13,54 @@
  },
  "apify": {
   "search:book recommendations": {
-   "run_id": "eeDzgvUU2WP0Sca44",
-   "items_count": 24,
-   "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1791133882, \"created_at_utc\": 1791133882, \"did_report_as_spam\": false, \"has_translation\": true, \"hashtags\": [\"#bookrecs\", \"#hefallsfirst\", \"#bookgirlies\", \"#romancebookrecs\", \"#fyp\"], \"id\": \"4000643232228323425\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Books where HE is obsessed with HER💌\\n\\nWhich ones have you read, and which are still in your tbr? \\n\\n#bookrecs #hefallsfirst #bookgirlies #romancebook",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1791108402, \"created_at_utc\": 1791108402, \"did_report_as_spam\": false, \"has_translation\": true, \"hashtags\": [\"#bookstagram\", \"#bookrecommendations\", \"#bookreviews\", \"#readingwrapup\"], \"id\": \"4000428380649534191\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"September reading wrap up 🍁\\n\\n1. One Hundred Years of Solitude by Gabriel García Márquez\\n2. A Philosophical Enquiry into the Sublime and Beautiful by "
-   ]
+   "run_id": "eEOSWwvJzdvhmttaB",
+   "items_count": 0,
+   "item_samples": []
   },
   "search:books that changed my life": {
-   "run_id": "KhYw8srNpDhtKqWrR",
-   "items_count": 18,
-   "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1600694400, \"created_at_utc\": 1600694400, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"2403121048716447622\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@jordan.b.peterson\", \"@jamesclear\", \"@gregorymckeown\", \"@ryanholiday\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"5 Books That Changed My Life 📚\\n\\n1️⃣ 12 Rules For Life by @jordan.b.peterson\\n\\n2️⃣ Atomic Habits by @jamesclear \\n\\n3️⃣ Deep Work by Cal Newport \\n\\n4️⃣ Essentialism by @gregory",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1747808754, \"created_at_utc\": 1747808754, \"did_report_as_spam\": false, \"hashtags\": [\"#bookrecommendations\", \"#productivity\", \"#booksthatchangedmylife\", \"#growth\", \"#selfhelp\"], \"id\": \"3637204883415161968\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@davidreadsfast\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"What’s your favorite book? \\n\\nThanks to @davidreadsfast for letting us interview him!\\n\\n#bookrecommendations #productivity #booksthatchanged"
-   ]
+   "run_id": "f6Rjg5kneIY7RCVv9",
+   "items_count": 0,
+   "item_samples": []
   },
   "search:booktok": {
-   "run_id": "9GUgQwsV7SdBtyVGc",
+   "run_id": "HLp8zqNhLAOdvXuYa",
    "items_count": 18,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1790614184, \"created_at_utc\": 1790614184, \"did_report_as_spam\": false, \"hashtags\": [\"#fyp\", \"#books\", \"#trending\", \"#booktok\", \"#relatable\"], \"id\": \"3996283256041692060\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"i’m so ready.\\n\\n🏷️: #fyp #books #trending #booktok #relatable [key words: fyp, for you, trending, trending audio, viral, explore page, love, obsessed, funny, emotional, books, bookstagram, book",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1788215013, \"created_at_utc\": 1788215013, \"did_report_as_spam\": false, \"hashtags\": [\"#booktok\"], \"id\": \"3976157809745472592\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@cashbaker\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"He loves book shopping🤗💖🫶📖 @cashbaker #booktok\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841480487736012\", \"full_name\": \"Kate💐📖💖🦋🍯\", \"id\": \"80528098924\", \"is_private\": false, \"is_unpublished\": false, \"is_verified\": false, \"profile_pi"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1786392937, \"created_at_utc\": 1786392937, \"did_report_as_spam\": false, \"hashtags\": [\"#booktok\", \"#fourthwing\", \"#fourtwingseries\", \"#fantasybooks\", \"#romantasy\"], \"id\": \"3960873197154601818\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"You’ve spent your whole life preparing to be a scribe. And then your mother announces that you’re joining the riders. Instead of books, you get weapons. \\n\\nInstead of a lib",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1790880481, \"created_at_utc\": 1790880481, \"did_report_as_spam\": false, \"hashtags\": [\"#bookstagram\", \"#booktok\", \"#bookish\", \"#booksta\"], \"id\": \"3998517159646500338\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@jasminemasbooks\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Thank you @jasminemasbooks for ruining my sleep schedule (📖The Emperors Enemy) \\n.\\n.\\n.\\n.\\n.\\n#bookstagram #booktok #bookish #booksta\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841402356"
    ]
   },
   "search:self improvement": {
-   "run_id": "84KyXuxNBFbKZTFw4",
-   "items_count": 17,
+   "run_id": "WDcwYQGJe8rBT4ngY",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1786722053, \"created_at_utc\": 1786722053, \"did_report_as_spam\": false, \"hashtags\": [\"#iamready\", \"#dailymotivation\", \"#mindsetiseverything\", \"#powerofthoughts\", \"#levelupmindset\"], \"id\": \"3963633827489080264\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Discipline nahi ban raha? Shayad tum ye 3 galtiyan kar rahe ho... procrastination, overthinking, aur perfectionism, ye teeno tumhara time aur energy waste ",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1777300593, \"created_at_utc\": 1777300593, \"did_report_as_spam\": false, \"hashtags\": [\"#fitnessindia\", \"#gymmotivation\", \"#musclebuilding\"], \"id\": \"3884601118152664965\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@tusharrajlifts\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Fix these 3 things daily…\\nand your life will start changing.\\n\\nFollow @tusharrajlifts for more fitness and self improvement content ✨️ \\n\\n[ laziness problem, self doubt mindset,"
+    "{\"are_remixes_crosspostable\": true, \"basel_encoding_timeout\": 99, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1788781803, \"created_at_utc\": 1788781803, \"did_report_as_spam\": false, \"hashtags\": [], \"id\": \"3980910589278230141\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"In honour of Father’s Day. Miss you dad ❤️\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841467672480788\", \"full_name\": \"Jay Thomson\", \"id\": \"67526311749\", \"is_private\": false, \"is_unpublished\": false, \"is_verified\": true, \"profi",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1790466032, \"created_at_utc\": 1790466032, \"did_report_as_spam\": false, \"hashtags\": [\"#mindset\", \"#selfimprovement\", \"#motivation\", \"#discipline\"], \"id\": \"3995040970566426871\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Read it 1 more time.\\n-\\n-\\n#mindset #selfimprovement #motivation #discipline\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841400113493948\", \"full_name\": \"Dom Angelo 🇮🇹 | International Businessman\","
    ]
   },
   "search:success mindset": {
-   "run_id": "6iWih5PKQ6YpqBqkz",
-   "items_count": 24,
-   "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1785734935, \"created_at_utc\": 1785734935, \"did_report_as_spam\": false, \"hashtags\": [\"#NeverGiveUp\", \"#SuccessMindset\", \"#StayStrong\", \"#RealityCheck\", \"#RealisticSketches\"], \"id\": \"3955353593533661490\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"They Pull You Down… But You Still Climb 💪🔥\\n\\n#NeverGiveUp\\n#SuccessMindset\\n#StayStrong\\n#RealityCheck\\n#RealisticSketches\\n\\nsuccess struggle\\npeople pulling do",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1783782621, \"created_at_utc\": 1783782621, \"did_report_as_spam\": false, \"hashtags\": [\"#BobKittell\", \"#Motivation\", \"#Leadership\", \"#SuccessMindset\", \"#PersonalGrowth\"], \"id\": \"3938975864138170742\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@onsidianmen\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Bob Kittell was born in the United States and is a motivational speaker, leadership expert, and corporate trainer known for inspiring people to unlock the"
-   ]
+   "run_id": "mZF5fNFH507H1oBFB",
+   "items_count": 0,
+   "item_samples": []
   },
   "search:morning routine": {
-   "run_id": "hxr4Kj0gdaNkzysbd",
-   "items_count": 21,
+   "run_id": "9gKGC2htkQFIcblcw",
+   "items_count": 24,
    "item_samples": [
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1763416247, \"created_at_utc\": 1763416247, \"did_report_as_spam\": false, \"hashtags\": [\"#morningroutine\", \"#dayinthelife\", \"#dayinmylife\", \"#routine\", \"#discipline\", \"#asmr\"], \"id\": \"3768026632242898291\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Pov: it’s 4am 🌧️💨\\n*my morning routine*\\n\\nI’m tired but i’m not here for comfort. I made a promise to myself even when the body feels heavy, i will go through it ",
-    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1775207216, \"created_at_utc\": 1775207216, \"did_report_as_spam\": false, \"hashtags\": [\"#morningroutine\", \"#5am\"], \"id\": \"3867040291526300985\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"4:30am morning routine…🫣 #morningroutine #5am\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841401904951986\", \"full_name\": \"Izzy Clark\", \"id\": \"767167498\", \"is_private\": false, \"is_unpublished\": false, \"is_verified\": false, \"profile_p"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": null, \"caption_is_edited\": false, \"clips_demotion_control\": {\"confirmation_body\": \"We'll suggest fewer posts like this.\", \"confirmation_icon\": \"none\", \"confirmation_style\": \"bottomsheet\", \"confirmation_title\": \"Post hidden\", \"confirmation_title_style\": \"large_left\", \"enable_word_wrapping\": true, \"followup_options\": [{\"data\": \"author_id:68809641679\", \"demotion_control\": {\"confirmation_body\": \"We won't suggest posts from morning_routine_._.\", \"confirmation_icon\": \"eye-off-pano\", \"confirmation_style\": \"",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1757810723, \"created_at_utc\": 1757810723, \"did_report_as_spam\": false, \"hashtags\": [\"#asmrsounds\"], \"id\": \"3721108109004378350\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Skin care routine vibe \\n#asmrsounds\", \"type\": 1, \"user\": {\"fbid_v2\": \"17841468690391205\", \"full_name\": \"morning routine ✨️ 🎀\", \"id\": \"68809641679\", \"is_private\": false, \"is_unpublished\": false, \"is_verified\": false, \"profile_pic_id\": \""
    ]
   },
   "search:entrepreneur motivation": {
-   "run_id": "7gQeEIAvlMA7a0bel",
-   "items_count": 14,
+   "run_id": "ip8KMHBJj2A4vnvzb",
+   "items_count": 20,
    "item_samples": [
-    "{\"_is__TOnXDTMediaDict__139\": \"XDTMediaDict\", \"ai_interactive_embodiment_attachment_style_info\": null, \"ai_label_info\": null, \"are_remixes_crosspostable\": true, \"attribution\": null, \"audience\": null, \"audio\": null, \"autodub_status\": null, \"basel_encoding_timeout\": null, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boosted_by_sponsor\": null, \"boosted_post_id\": null, \"boosted_status\": null, \"branded_content_ads_boost_post_tokens\": null, \"byoa_langs\": null, \"can_modify_carousel\": null, \"can_reply\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"content_type\": \"comment\", \"created_at\": 1790454589, \"created_at_utc\": 1790454589, \"did_report_as_spam\": false, \"f",
-    "{\"ai_interactive_embodiment_attachment_style_info\": null, \"ai_label_info\": null, \"are_remixes_crosspostable\": true, \"attribution\": null, \"audience\": null, \"audio\": null, \"autodub_status\": null, \"basel_encoding_timeout\": null, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boosted_by_sponsor\": null, \"boosted_post_id\": null, \"boosted_status\": null, \"branded_content_ads_boost_post_tokens\": null, \"byoa_langs\": null, \"can_modify_carousel\": null, \"can_reply\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"content_type\": \"comment\", \"created_at\": 1714163588, \"created_at_utc\": 1714163588, \"did_report_as_spam\": false, \"fb_mentioned_users\": null, \"hashtags\": [\"#hear"
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1709061974, \"created_at_utc\": 1709061974, \"did_report_as_spam\": false, \"hashtags\": [\"#EliteConsultingPartners\", \"#Motivation\", \"#Entrepreneur\", \"#Entrepreneurship\", \"#BusinessOwner\", \"#Determination\", \"#Success\", \"#Growth\"], \"id\": \"3312174014549687358\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Running your own business can be daunting, especially in that first year when uncertainty looms large and the w",
+    "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"created_at\": 1738893676, \"created_at_utc\": 1738893676, \"did_report_as_spam\": false, \"hashtags\": [\"#FreedomOverEverything\", \"#SuccessMindset\", \"#EntrepreneurLife\", \"#WorkLifeBalance\", \"#GrindWithPurpose\", \"#LiveOnYourTerms\", \"#DefineSuccess\", \"#StayPresent\", \"#GratefulLiving\", \"#FinancialFreedom\"], \"id\": \"3562420651776417199\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [\"@thesunnahguy\"], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"Entrepreneurship isn’t just about m"
    ]
   },
   "search:how to start a business": {
-   "run_id": "slN9o1vNdOalEBmFs",
+   "run_id": "wWe7wABcDzezUMkPC",
    "items_count": 24,
    "item_samples": [
     "{\"are_remixes_crosspostable\": true, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boost_unavailable_reason_v2\": null, \"can_reshare\": false, \"can_save\": true, \"caption\": {\"created_at\": 1785013870, \"created_at_utc\": 1785013870, \"did_report_as_spam\": false, \"hashtags\": [\"#startyourbusiness\", \"#entrepreneurship\", \"#businessideas\", \"#howtostartabusiness\"], \"id\": \"3949303790276225372\", \"is_covered\": false, \"is_ranked_comment\": false, \"mentions\": [], \"private_reply_status\": 0, \"share_enabled\": false, \"text\": \"People ask me all the time what business they should start. Most of them are looking for something complicated. Thinking complexity means more money. But the easiest",
@@ -77,19 +68,27 @@
    ]
   },
   "search:make money online": {
-   "run_id": "7mnVe0w08dmsYbKbG",
+   "run_id": "jTHSBiQdHtCZvajgd",
    "items_count": 28,
    "item_samples": [
-    "{\"ai_interactive_embodiment_attachment_style_info\": null, \"ai_label_info\": {\"attribution_label_text\": null, \"content_sheet_sections\": [], \"gen_ai_detection_method\": \"CLASSIFIER_SCORE_HIGH\", \"should_read_attribution_label\": true, \"subtitle_text\": \"Likely made with AI\"}, \"are_remixes_crosspostable\": true, \"attribution\": null, \"audience\": null, \"audio\": null, \"autodub_status\": null, \"basel_encoding_timeout\": null, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boosted_by_sponsor\": null, \"boosted_post_id\": null, \"boosted_status\": null, \"branded_content_ads_boost_post_tokens\": null, \"byoa_langs\": null, \"can_modify_carousel\": null, \"can_reply\": null, \"can_reshare\": true, ",
-    "{\"ai_interactive_embodiment_attachment_style_info\": null, \"ai_label_info\": null, \"are_remixes_crosspostable\": true, \"attribution\": null, \"audience\": null, \"audio\": null, \"autodub_status\": null, \"basel_encoding_timeout\": null, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boosted_by_sponsor\": null, \"boosted_post_id\": null, \"boosted_status\": null, \"branded_content_ads_boost_post_tokens\": null, \"byoa_langs\": null, \"can_modify_carousel\": null, \"can_reply\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"content_type\": \"comment\", \"created_at\": 1787349037, \"created_at_utc\": 1787349037, \"did_report_as_spam\": false, \"fb_mentioned_users\": null, \"hashtags\": [\"#bost"
+    "{\"ai_interactive_embodiment_attachment_style_info\": null, \"ai_label_info\": {\"attribution_label_text\": null, \"content_sheet_sections\": [], \"gen_ai_detection_method\": \"CLASSIFIER_SCORE_HIGH\", \"should_read_attribution_label\": false, \"subtitle_text\": \"Likely made with AI\"}, \"are_remixes_crosspostable\": true, \"attribution\": null, \"audience\": null, \"audio\": null, \"autodub_status\": null, \"basel_encoding_timeout\": null, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boosted_by_sponsor\": null, \"boosted_post_id\": null, \"boosted_status\": null, \"branded_content_ads_boost_post_tokens\": null, \"byoa_langs\": null, \"can_modify_carousel\": null, \"can_reply\": null, \"can_reshare\": true,",
+    "{\"ai_interactive_embodiment_attachment_style_info\": null, \"ai_label_info\": null, \"are_remixes_crosspostable\": true, \"attribution\": null, \"audience\": null, \"audio\": null, \"autodub_status\": null, \"basel_encoding_timeout\": null, \"boost_unavailable_identifier\": null, \"boost_unavailable_reason\": null, \"boosted_by_sponsor\": null, \"boosted_post_id\": null, \"boosted_status\": null, \"branded_content_ads_boost_post_tokens\": null, \"byoa_langs\": null, \"can_modify_carousel\": null, \"can_reply\": null, \"can_reshare\": true, \"can_save\": true, \"caption\": {\"content_type\": \"comment\", \"created_at\": 1782104076, \"created_at_utc\": 1782104076, \"did_report_as_spam\": false, \"fb_mentioned_users\": null, \"hashtags\": [], \"id"
+   ]
+  },
+  "tracked": {
+   "run_id": "QcYh7a5K5w9DvElQL",
+   "items_count": 9,
+   "item_samples": [
+    "{\"inputUrl\": \"https://www.instagram.com/reel/DeCnAW8T0Vk/\", \"id\": \"3999930967506503012\", \"type\": \"Video\", \"shortCode\": \"DeCnAW8T0Vk\", \"caption\": \"Jock guy X nerd girl \\nThe homeboys we all want \\n\\n#animatedstory #booktok #deluluart #romancebook #spicybook\", \"hashtags\": [\"animatedstory\", \"booktok\", \"deluluart\", \"romancebook\", \"spicybook\"], \"mentions\": [], \"url\": \"https://www.instagram.com/p/DeCnAW8T0Vk/\", \"commentsCount\": 9, \"firstComment\": \"Ok but hear me out on liam😂 he seems like a ride or die. LITERALLY\", \"latestComments\": [{\"id\": \"17911597599540649\", \"text\": \"Ok but hear me out on liam😂 he seems like a ride or die. LITERALLY\", \"ownerUsername\": \"midnightravenwrites\", \"ownerProfilePicUrl\"",
+    "{\"inputUrl\": \"https://www.instagram.com/reel/Dd6mjKRM80c/\", \"id\": \"3997677161219869980\", \"type\": \"Video\", \"shortCode\": \"Dd6mjKRM80c\", \"caption\": \"A disgrace for @cornelluniversity they are also in this. It’s not just those 7 men or the 50 in the groupchat or the professors. ITS THE ENTIRE UNIVERSITY (Random tags) #bookish #reader #booktok #readersofinstagram #bookworm\", \"hashtags\": [\"bookish\", \"reader\", \"booktok\", \"readersofinstagram\", \"bookworm\"], \"mentions\": [\"cornelluniversity\"], \"url\": \"https://www.instagram.com/p/Dd6mjKRM80c/\", \"commentsCount\": 200, \"firstComment\": \"Just pretend they're muslim so you can go back to not caring\", \"latestComments\": [{\"id\": \"17898300501397991\", \"text\": \"Jus"
    ]
   },
   "profiles": {
-   "run_id": "fL6NxaBY0gsTWqyDe",
-   "items_count": 22,
+   "run_id": "iLAiSwkqrRsHtD4zC",
+   "items_count": 7,
    "item_samples": [
-    "{\"inputUrl\": \"https://www.instagram.com/irfan.0992019\", \"id\": \"26272296272\", \"username\": \"irfan.0992019\", \"url\": \"https://www.instagram.com/irfan.0992019\", \"fullName\": \"Muhammad Irfan\", \"biography\": \"hi\", \"externalUrls\": [], \"followersCount\": 32585, \"followsCount\": 3588, \"highlightReelCount\": 0, \"isBusinessAccount\": false, \"joinedRecently\": false, \"businessCategoryName\": \"Digital creator\", \"private\": false, \"verified\": false, \"profilePicUrl\": \"https://scontent-mia5-1.cdninstagram.com/v/t51.2885-19/424554828_899744801701784_4384117883240943025_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby45NDguYzIifQ&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_cat=1&_nc_",
-    "{\"inputUrl\": \"https://www.instagram.com/prakhargupta_clips\", \"id\": \"77842513026\", \"username\": \"prakhargupta_clips\", \"url\": \"https://www.instagram.com/prakhargupta_clips\", \"fullName\": \"PrakharGuptaClips\", \"biography\": \"“Daily clips of Prakhar Gupta 🎙️\\nDeep talks on mindset, life & reality\\nShorts that make you think ⚡”\", \"externalUrls\": [], \"followersCount\": 35086, \"followsCount\": 0, \"highlightReelCount\": 1, \"isBusinessAccount\": false, \"joinedRecently\": false, \"businessCategoryName\": null, \"private\": false, \"verified\": true, \"profilePicUrl\": \"https://instagram.fktw4-1.fna.fbcdn.net/v/t51.82787-19/663189612_17873169921593027_6905364796696287998_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2"
+    "{\"inputUrl\": \"https://www.instagram.com/bookscene28\", \"id\": \"46132212970\", \"username\": \"bookscene28\", \"url\": \"https://www.instagram.com/bookscene28\", \"fullName\": \"Leonie\", \"biography\": \"🎬 Fantasy books brought to life with AI\\n🐉 Dragons • Magic • Romance\\n🎧 Original music & soundtracks ↓\", \"externalUrls\": [{\"title\": \"Soundcloud\", \"lynx_url\": \"https://l.instagram.com/?u=https%3A%2F%2Fon.soundcloud.com%2FVqDCC4avUNXDfUqCIm%3Futm_id%3D97760_v0_s00_e0_tv3_a1denngqe52b8q&e=AUDCP9zuMARSFWdEapr3rdc3tsW6yVJniDX_mSBtN1n2rGmO0B9T8LTFWMSYQdTmT_hCGEjVQObFy2LusjthsjH2TzYJPXrB\", \"url\": \"https://on.soundcloud.com/VqDCC4avUNXDfUqCIm\", \"link_type\": \"external\"}], \"externalUrl\": \"https://on.soundcloud.com/VqDC",
+    "{\"inputUrl\": \"https://www.instagram.com/bojackspsl\", \"id\": \"32439219826\", \"username\": \"bojackspsl\", \"url\": \"https://www.instagram.com/bojackspsl\", \"fullName\": \"Bojack\", \"biography\": \"I help people optimize their aesthetic 🎲 \\nAscend your looks TODAY👇\", \"externalUrls\": [{\"title\": \"Skool\", \"lynx_url\": \"https://l.instagram.com/?u=http%3A%2F%2Fskool.com%2Fbojack%2Fabout&e=AUCudgeI1nmdaduRIgCw9j_dhgxtq06Xfe45CY0QmWRLHUlSsgUkCOgkgn159VmfQVxALlaZIFV30_aBFif85UywwmY_pMEt\", \"url\": \"http://skool.com/bojack/about\", \"link_type\": \"external\"}], \"externalUrl\": \"http://skool.com/bojack/about\", \"externalUrlShimmed\": \"https://l.instagram.com/?u=http%3A%2F%2Fskool.com%2Fbojack%2Fabout&e=AUARPRjzQn3VlwdY5kAX7dH"
    ]
   }
  },
@@ -131,13 +130,13 @@
    "maxPages": 2
   }
  },
- "posts_total": 188,
+ "posts_total": 138,
  "telegram": {
   "bot_username": "Paired_tgbot",
   "chat_id": "730601273",
   "sent": true,
   "messages_sent": 1
  },
- "reels_kept": 22,
- "run_at": "2026-10-06T10:48:04.713275+00:00"
+ "reels_kept": 17,
+ "run_at": "2026-10-07T10:35:29.879878+00:00"
 }
