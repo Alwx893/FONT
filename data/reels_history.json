@@ -1,68 +1,4 @@
 {
- "DdBn1uGMSLd": {
-  "post_ts": "2026-09-08T11:54:04+00:00",
-  "snapshots": [
-   [
-    "2026-09-09T08:23:21.321768+00:00",
-    55536
-   ],
-   [
-    "2026-09-10T08:24:50.681246+00:00",
-    71550
-   ],
-   [
-    "2026-09-11T08:19:35.609988+00:00",
-    75929
-   ],
-   [
-    "2026-09-12T08:08:38.300778+00:00",
-    78499
-   ],
-   [
-    "2026-09-13T08:33:19.847109+00:00",
-    81339
-   ],
-   [
-    "2026-09-14T09:16:23.643838+00:00",
-    84299
-   ]
-  ],
-  "category": "books",
-  "author": "tuhkyjuhslife",
-  "followers": 71336
- },
- "DdCaSmzMlib": {
-  "post_ts": "2026-09-08T19:13:58+00:00",
-  "snapshots": [
-   [
-    "2026-09-09T08:23:21.321768+00:00",
-    179950
-   ],
-   [
-    "2026-09-10T08:24:50.681246+00:00",
-    359076
-   ],
-   [
-    "2026-09-11T08:19:35.609988+00:00",
-    385210
-   ],
-   [
-    "2026-09-12T08:08:38.300778+00:00",
-    402760
-   ],
-   [
-    "2026-09-13T08:33:19.847109+00:00",
-    446592
-   ],
-   [
-    "2026-09-14T09:16:23.643838+00:00",
-    464286
-   ]
-  ],
-  "category": "books",
-  "author": "aliradfordd",
-  "followers": 270430
- },
  "DdGzK4QRSc7": {
   "post_ts": "2026-09-10T12:09:34+00:00",
   "snapshots": [
@@ -126,26 +62,6 @@
   "category": "success",
   "author": "hashmani_growth",
   "followers": 6776
- },
- "DdB9mE6SPA1": {
-  "post_ts": "2026-09-08T15:07:15+00:00",
-  "snapshots": [
-   [
-    "2026-09-12T08:08:38.300778+00:00",
-    519039
-   ],
-   [
-    "2026-09-13T08:33:19.847109+00:00",
-    531325
-   ],
-   [
-    "2026-09-14T09:16:23.643838+00:00",
-    538462
-   ]
-  ],
-  "category": "entrepreneurship",
-  "author": "manishgupta_chrysalis",
-  "followers": 221605
  },
  "DdEpnfhzIsX": {
   "post_ts": "2026-09-09T16:08:23+00:00",
@@ -211,18 +127,6 @@
   "author": "cevlocksin",
   "followers": 17704
  },
- "DdDXwqPxcvA": {
-  "post_ts": "2026-09-09T04:11:56+00:00",
-  "snapshots": [
-   [
-    "2026-09-14T09:16:23.643838+00:00",
-    7883
-   ]
-  ],
-  "category": "books",
-  "author": "chlokayy_",
-  "followers": 13996
- },
  "DdHr5fmvE0J": {
   "post_ts": "2026-09-10T20:24:58+00:00",
   "snapshots": [
@@ -234,18 +138,6 @@
   "category": "success",
   "author": "dalttalk",
   "followers": 3330
- },
- "DdDuVerBysO": {
-  "post_ts": "2026-09-09T07:28:49+00:00",
-  "snapshots": [
-   [
-    "2026-09-14T09:16:23.643838+00:00",
-    357353
-   ]
-  ],
-  "category": "success",
-  "author": "its.jaygomez",
-  "followers": 37645
  },
  "DdIUlz5tJBO": {
   "post_ts": "2026-09-11T02:19:22+00:00",
@@ -273,6 +165,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     96059
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    100383
    ]
   ],
   "category": "books",
@@ -317,6 +213,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     104911
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    105973
    ]
   ],
   "category": "books",
@@ -349,6 +249,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     93917
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    95351
    ]
   ],
   "category": "books",
@@ -457,6 +361,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     217642
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    225251
    ]
   ],
   "category": "books",
@@ -533,6 +441,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     263878
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    273539
    ]
   ],
   "category": "books",
@@ -573,11 +485,15 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     40981993
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    41582050
    ]
   ],
   "category": "success",
   "author": "irfan.0992019",
-  "followers": 32585
+  "followers": 34717
  },
  "Dd4SaYgKC_t": {
   "post_ts": "2026-09-29T17:24:43+00:00",
@@ -613,6 +529,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     376713
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    385053
    ]
   ],
   "category": "books",
@@ -629,6 +549,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     61814
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    62704
    ]
   ],
   "category": "books",
@@ -645,6 +569,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     404179
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    405900
    ]
   ],
   "category": "success",
@@ -661,11 +589,15 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     3373305
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    3393508
    ]
   ],
   "category": "success",
   "author": "awaken_aura222",
-  "followers": 464354
+  "followers": 468215
  },
  "DeIYHI3PMb4": {
   "post_ts": "2026-10-05T23:22:01+00:00",
@@ -677,11 +609,15 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     404520
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    418472
    ]
   ],
   "category": "success",
   "author": "bojackspsl",
-  "followers": 23213
+  "followers": 24108
  },
  "Dd9y1C0TV9D": {
   "post_ts": "2026-10-01T20:44:20+00:00",
@@ -705,11 +641,15 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     3276026
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    3300847
    ]
   ],
   "category": "entrepreneurship",
   "author": "jacob.scruggmp4",
-  "followers": 148947
+  "followers": 150734
  },
  "DeKcNaoRqDj": {
   "post_ts": "2026-10-06T18:37:26+00:00",
@@ -729,11 +669,15 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     4994
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    16514
    ]
   ],
   "category": "books",
   "author": "weirdwitchx",
-  "followers": 72426
+  "followers": 72730
  },
  "DeJQreRRRIA": {
   "post_ts": "2026-10-06T07:35:51+00:00",
@@ -741,6 +685,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     123665
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    141244
    ]
   ],
   "category": "books",
@@ -765,6 +713,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     55148
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    61017
    ]
   ],
   "category": "books",
@@ -789,6 +741,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     123018
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    132150
    ]
   ],
   "category": "books",
@@ -837,6 +793,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     66147
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    67847
    ]
   ],
   "category": "books",
@@ -849,6 +809,10 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     77463
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    81778
    ]
   ],
   "category": "books",
@@ -861,10 +825,410 @@
    [
     "2026-10-08T10:56:44.667767+00:00",
     5053587
+   ],
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    7627902
    ]
   ],
   "category": "entrepreneurship",
   "author": "actual.abhishek",
-  "followers": 239933
+  "followers": 262881
+ },
+ "DeMuMcNJUH-": {
+  "post_ts": "2026-10-07T15:51:53+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    64115
+   ]
+  ],
+  "category": "books",
+  "author": "haleyskylarreads",
+  "followers": 7416
+ },
+ "DeOMXheO7JF": {
+  "post_ts": "2026-10-08T05:34:42+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    171511
+   ]
+  ],
+  "category": "books",
+  "author": "kritiisachan",
+  "followers": 268459
+ },
+ "DeFmCKhBh8M": {
+  "post_ts": "2026-10-04T21:25:33+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    17927
+   ]
+  ],
+  "category": "books",
+  "author": "maddiemar",
+  "followers": 23181
+ },
+ "DeM2tTKoxmm": {
+  "post_ts": "2026-10-07T17:07:24+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    20022
+   ]
+  ],
+  "category": "books",
+  "author": "skyeannereads",
+  "followers": 20390
+ },
+ "DePgtOeyBzx": {
+  "post_ts": "2026-10-08T17:53:29+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    102261
+   ]
+  ],
+  "category": "books",
+  "author": "readwithmegan",
+  "followers": 62378
+ },
+ "DePlC_hzFF-": {
+  "post_ts": "2026-10-08T18:34:13+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    31167
+   ]
+  ],
+  "category": "books",
+  "author": "elitereading",
+  "followers": 466545
+ },
+ "Dd_c8E1IcxS": {
+  "post_ts": "2026-10-02T12:11:45+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    10578
+   ]
+  ],
+  "category": "books",
+  "author": "mirjhippo",
+  "followers": 19165
+ },
+ "DeO_WuIAzSu": {
+  "post_ts": "2026-10-08T13:11:47+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    5538
+   ]
+  ],
+  "category": "books",
+  "author": "meagan.carioti",
+  "followers": 40439
+ },
+ "DePfpGQOqL9": {
+  "post_ts": "2026-10-08T17:43:40+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    28108
+   ]
+  ],
+  "category": "books",
+  "author": "kinzeyreads",
+  "followers": 24747
+ },
+ "DePUBt5B4Nh": {
+  "post_ts": "2026-10-08T16:00:06+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    125585
+   ]
+  ],
+  "category": "books",
+  "author": "probablyoffreading",
+  "followers": 471263
+ },
+ "DeP-Jm1R0aP": {
+  "post_ts": "2026-10-08T22:09:20+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    43104
+   ]
+  ],
+  "category": "books",
+  "author": "paperbackate",
+  "followers": 11809
+ },
+ "DePS41EsLqi": {
+  "post_ts": "2026-10-08T15:52:43+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    4730
+   ]
+  ],
+  "category": "books",
+  "author": "books_and_crafts_jes",
+  "followers": 169220
+ },
+ "DePqtpYuaZz": {
+  "post_ts": "2026-10-08T19:19:02+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    2115
+   ]
+  ],
+  "category": "books",
+  "author": "the_creative_muggle_",
+  "followers": 14079
+ },
+ "DePbOYDSTkC": {
+  "post_ts": "2026-10-08T17:03:16+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    168
+   ]
+  ],
+  "category": "books",
+  "author": "thebookempire21",
+  "followers": 5566
+ },
+ "DeP19Bcyubg": {
+  "post_ts": "2026-10-08T21:01:40+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    2652
+   ]
+  ],
+  "category": "books",
+  "author": "nailandnovel",
+  "followers": 3725
+ },
+ "DePmn9-tF6M": {
+  "post_ts": "2026-10-08T18:43:28+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    1176
+   ]
+  ],
+  "category": "books",
+  "author": "readitwithamyx",
+  "followers": 8205
+ },
+ "DePaJmgq_3Y": {
+  "post_ts": "2026-10-08T16:55:13+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    3508
+   ]
+  ],
+  "category": "books",
+  "author": "traceysbusyreading",
+  "followers": 7715
+ },
+ "DePlf1FtF-9": {
+  "post_ts": "2026-10-08T18:35:46+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    3369
+   ]
+  ],
+  "category": "books",
+  "author": "richie_reads",
+  "followers": 23480
+ },
+ "DePXdyBobE3": {
+  "post_ts": "2026-10-08T16:34:31+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    4815
+   ]
+  ],
+  "category": "books",
+  "author": "bookbaruk",
+  "followers": 75888
+ },
+ "DePt5BeMX8m": {
+  "post_ts": "2026-10-08T19:47:30+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    6656
+   ]
+  ],
+  "category": "books",
+  "author": "growwith.nomes",
+  "followers": 46156
+ },
+ "DeQFVIKzAhm": {
+  "post_ts": "2026-10-08T23:14:32+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    8739
+   ]
+  ],
+  "category": "books",
+  "author": "ambersometimesreads",
+  "followers": 57550
+ },
+ "DeOsUewBJxI": {
+  "post_ts": "2026-10-08T10:20:46+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    4731
+   ]
+  ],
+  "category": "books",
+  "author": "simonandschusterin",
+  "followers": 36730
+ },
+ "DeCdI-yMIBm": {
+  "post_ts": "2026-10-03T16:11:18+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    462241
+   ]
+  ],
+  "category": "books",
+  "author": "animouti",
+  "followers": 26693
+ },
+ "DeLXbTKNtHI": {
+  "post_ts": "2026-10-07T03:13:52+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    149618
+   ]
+  ],
+  "category": "books",
+  "author": "mrs_warner_anderson",
+  "followers": 22369
+ },
+ "DeGqDD2s2lP": {
+  "post_ts": "2026-10-05T07:20:02+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    500044
+   ]
+  ],
+  "category": "books",
+  "author": "bookish_robes",
+  "followers": 2608
+ },
+ "DeKh4mapCG1": {
+  "post_ts": "2026-10-06T19:30:03+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    309174
+   ]
+  ],
+  "category": "books",
+  "author": "sage.and.books",
+  "followers": 22048
+ },
+ "DeCXBs2sPt0": {
+  "post_ts": "2026-10-03T15:24:01+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    335747
+   ]
+  ],
+  "category": "books",
+  "author": "tropepictures",
+  "followers": 58631
+ },
+ "DeNXlBWtFiJ": {
+  "post_ts": "2026-10-07T21:54:22+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    256818
+   ]
+  ],
+  "category": "books",
+  "author": "tinysins.us",
+  "followers": 67983
+ },
+ "DeFA4JVJTax": {
+  "post_ts": "2026-10-04T16:00:51+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    255428
+   ]
+  ],
+  "category": "books",
+  "author": "aikaslibrary_",
+  "followers": 49529
+ },
+ "DeGEDbyBZGT": {
+  "post_ts": "2026-10-05T01:47:39+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    1989
+   ]
+  ],
+  "category": "books",
+  "author": "katie.bookish",
+  "followers": 136
+ },
+ "DeNJrCvpcNU": {
+  "post_ts": "2026-10-07T19:51:40+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    461401
+   ]
+  ],
+  "category": "books",
+  "author": "nicole.romantasy",
+  "followers": 10741
+ },
+ "DeP_DEqIidf": {
+  "post_ts": "2026-10-08T22:17:57+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    7035
+   ]
+  ],
+  "category": "entrepreneurship",
+  "author": "startupstealth",
+  "followers": 159374
+ },
+ "DeHj0wWMFnH": {
+  "post_ts": "2026-10-05T15:45:02+00:00",
+  "snapshots": [
+   [
+    "2026-10-09T10:55:30.442785+00:00",
+    108084
+   ]
+  ],
+  "category": "entrepreneurship",
+  "author": "jordanbownlife",
+  "followers": 480504
  }
 }
